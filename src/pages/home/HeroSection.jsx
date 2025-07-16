@@ -1,32 +1,38 @@
 // components/HeroSection.jsx
+import Image from 'next/image';
 import React from 'react';
+import Podccast from "../assert/home/podcast.webp"
+
 
 function HeroSection() {
   return (
-    <div className="flex items-center justify-between p-16 bg-black">
-      <div className="w-1/2 pr-8">
-        <h1 className="text-white text-6xl font-bold leading-tight heading">Where every music scene lives.</h1>
-        <p className="text-white text-lg mt-6 max-w-lg">
-          Discover 400 million songs, remixes and DJ sets: every chart-topping track you can find elsewhere,
-          and millions more you can't find anywhere else.
-        </p>
-        <div className="flex space-x-4 mt-10">
-          <button className="bg-white text-pink-500 px-7 py-4 rounded-md font-semibold hover:bg-gray-100">Listing Now</button>
-          <button className="bg-pink-700 text-white px-7 py-4 rounded-md font-semibold hover:bg-pink-800">Explore Episodes</button>
+    <div className="bg-gradient-to-r from-pink-400 to-pink-600  flex flex-col">
+      {/* Hero Section */}
+      <div className="flex flex-col md:flex-row justify-between items-center flex-1 px-8 py-12">
+        <div className="max-w-xl space-y-6">
+          <h1 className="text-5xl font-bold text-white">
+            Where every <br /> music scene lives.
+          </h1>
+          <p className="text-white text-lg">
+            Discover 400 million songs, remixes and DJ sets: every chart-topping track you can find elsewhere, and millions more you can't find anywhere else.
+          </p>
+          <div className="flex space-x-4">
+            <button className="bg-white text-black font-semibold px-5 py-3 rounded shadow hover:bg-gray-200">
+              Listing Now
+            </button>
+            <button className="bg-transparent border border-black text-black font-semibold px-5 py-3 rounded hover:bg-white hover:text-pink-600 transition">
+              Explore Episodes
+            </button>
+          </div>
         </div>
-      </div>
-
-      {/* Right Content (Image and Artist Info) */}
-      <div className="w-1/2 relative">
-        <img src="https://www.nasa.gov/wp-content/uploads/2024/07/hwhap-logo-2024-4k.png" alt="Artist" className="w-full h-auto rounded-lg" /> {/* Replace with actual image path */}
-        <div className="absolute bottom-8 right-8 text-right"> {/* Adjust positioning */}
-          <p className="text-white text-lg font-semibold">SAILORR</p>
-          <p className="text-white text-sm">Ascending Artist</p>
-        </div>
-        <div className="flex justify-center space-x-2 mt-4">
-            <span className="w-3 h-3 bg-white rounded-full"></span>
-            <span className="w-3 h-3 bg-gray-400 rounded-full"></span>
-            <span className="w-3 h-3 bg-gray-400 rounded-full"></span>
+        <div className="mt-10 md:mt-0">
+          <Image
+            src={Podccast}
+            alt="Artist"
+            width={400}
+            height={500}
+            className="rounded-lg"
+          />
         </div>
       </div>
     </div>

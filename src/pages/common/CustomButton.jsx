@@ -5,8 +5,8 @@ const CustomButton = ({ text = "Get Started Free", onClick, icon }) => (
       flex items-center justify-center gap-[10px]
       w-full sm:w-[187px] md:w-[200px] 
       h-[35px] md:h-[39px]
-      rounded-[40px] border border-gray-400
-      text-gray-400 text-sm md:text-lg font-medium 
+      rounded-[40px] border border-[#999999]
+      text-[#999999] text-sm md:text-lg font-medium 
       bg-transparent 
       transition duration-300 
       shadow-md hover:shadow-xl

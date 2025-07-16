@@ -30,13 +30,13 @@ const podcasts = [
 
 export default function Podcast() {
   return (
-    <section className="bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto container xl:max-w-[1230px] px-4">
+    <section className="bg-black text-white  py-12 px-4 sm:px-6 lg:px-8">
+      <div className="container  w-[100%] max-w-[1440px] m-auto  ">
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
           {/* Left side */}
           <div className="text-center md:text-left">
-            <h2 className="text-xl font-bold mb-2">Stream Top Podcasts</h2>
-            <p className="text-sm text-gray-300">
+            <h2 className="text-xl font-bold mb-2 text-white">Stream Top Podcasts</h2>
+            <p className="text-sm text-[#999999]">
               Stream the best podcasts from your favorite stations
             </p>
           </div>

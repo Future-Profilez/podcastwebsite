@@ -103,7 +103,7 @@ const topicsData = [
 const TopicsGrid = () => {
   return (
     <section className="bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto container xl:max-w-[1230px] px-4">
+      <div className="container  w-[100%] max-w-[1440px] m-auto ">
         <h2 className="text-xl font-bold mb-2">Topics</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {topicsData.map((topic) => (
@@ -111,22 +111,12 @@ const TopicsGrid = () => {
               key={topic.id} // Essential for list rendering in React
               className={`relative rounded-lg overflow-hidden h-40 bg-gradient-to-br ${topic.gradient}`}
             >
-              {/* For Next.js Image Optimization, ideally use next/image */}
-              {/* <Image
-              src={topic.imageSrc}
-              alt={topic.title}
-              layout="fill" // Or adjust as needed
-              objectFit="cover"
-              className="opacity-50"
-              width={32}
-              height={32}
-            /> */}
               <img
                 src={topic.imageSrc}
                 alt={topic.title}
                 className="absolute inset-0 w-full h-full object-cover opacity-50"
               />
-              <div className="relative p-4 flex items-end h-full">
+              <div className="relative p-4 flex items-start h-full">
                 <span className="text-white text-lg font-semibold">{topic.title}</span>
               </div>
             </div>
