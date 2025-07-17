@@ -1,7 +1,7 @@
 // components/HeroSection.jsx
 import Image from 'next/image';
 import React from 'react';
-import Podccast from "../assert/home/podcast.webp"
+import Podccast from "../../assets/podcast.webp"
 
 
 function HeroSection() {
