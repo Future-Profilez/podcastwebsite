@@ -26,7 +26,6 @@
   --text-graydark: #333333;
   --text-paragraph:  #999999;
   --linear-gradient :linear-gradient(to right, #f9a8d4, #f9a8d4, #f472b6);
-  --button-gradient :linear-gradient(to right, #c081a3, #c9689d, #f184bd);
 }
 
 body{
@@ -35,7 +34,7 @@ body{
 
 .hero_bg{background:var(--linear-gradient);}
 .detail_bg{background:var(--linear-gradient);}
-.button-bg{background:var(--linear-gradient); color:var(--white); }
+.button-bg{background:var(--pink); color:var(--white); font-weight: 600;}
 .paragraph {  font-family: Poppins; color:var(--text-paragraph);}
 .heading{font-family: Inter;  color : var(--white);}
 .sidebar{  box-shadow: 0px 4px 74px 0px #0000000D;}
