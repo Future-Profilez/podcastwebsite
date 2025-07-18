@@ -9,3 +9,7 @@ body {
   .font-inter {
     font-family: "Inter", sans-serif;
   } 
+.hero_bg {
+  background: linear-gradient(to right, #f9a8d4, #f9a8d4, #f472b6);
+}
+
