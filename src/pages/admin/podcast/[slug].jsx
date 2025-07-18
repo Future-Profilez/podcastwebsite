@@ -6,11 +6,13 @@ import Listing from "@/pages/api/Listing";
 import { useRouter } from "next/router";
 import moment from "moment";
 import EpisodeCard from "./EpisodeCard";
+import AddEpisode from "./AddEpisode";
 
 export default function Detail() {
   const router = useRouter();
   const { slug } = router.query;
   const [loading, setLoading] = useState(false);
+  const [isEpisodePopupOpen, setIsEpisodePopupOpen] = useState(false);
   const [data, setData] = useState([]);
 
   const fetchPodcasts = async (slug) => {
@@ -69,8 +71,10 @@ export default function Detail() {
       </div>
       <div className="mt-8">
         <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold mb-4">Episodes</h2>
-        <button>
+        <h2 className="text-2xl font-bold">Episodes</h2>
+        <button className="rounded-[40px] button-bg py-1 sm:py-2 px-3 sm:px-5 cursor-pointer text-sm sm:text-base md:text-md"
+         onClick={()=>{setIsEpisodePopupOpen(true);}}
+        >
             Add New Episode
         </button>
         </div>
@@ -78,6 +82,10 @@ export default function Detail() {
         <EpisodeCard episode={item} key={index}/>
       ))}
       </div>
+      <AddEpisode
+        isOpen={isEpisodePopupOpen}
+        onClose={()=>{setIsEpisodePopupOpen(false);}}
+      />
     </AuthLayout>
   );
 }
