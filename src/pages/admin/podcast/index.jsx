@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import AuthLayout from "@/layout/AuthLayout";
 import Listing from "@/pages/api/Listing";
 import { FaChevronDown } from "react-icons/fa";
+import AddPodcast from "./AddPodcast";
+import Image from "next/image";
 
 export default function Index() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [active, setActive] = useState(null);
+  const [isPodcastPopupOpen, setIsPodcastPopupOpen] = useState(false);
 
   const fetchEarnings = async () => {
     try {
@@ -25,7 +28,7 @@ export default function Index() {
     fetchEarnings();
   }, []);
 
-  console.log("data", data);
+  // console.log("data", data);
 
   const toggleDropdown = (id) => {
     setActive((prev) => (prev === id ? null : id));
@@ -39,13 +42,13 @@ export default function Index() {
           🎙️ Latest Podcasts
         </h1>
         <button
-        //  onClick={downloadExcel}
+         onClick={() => {setIsPodcastPopupOpen(true);}}
          className="w-fit px-4 xl:px-8 py-2 h-[44px] hover:bg-white hover:text-black border border-black rounded-md tracking-[-0.06em] text-sm font-medium bg-white text-black cursor-pointer"
         >
           Add Podcast
         </button>
         </div>
-        {data?.map((podcast) => (
+        {data && data?.map((podcast) => (
           <div
             key={podcast.id}
             className="bg-[#1a1a1a] rounded-2xl shadow-xl overflow-hidden w-full"
@@ -53,11 +56,13 @@ export default function Index() {
             {/* Podcast Info */}
             <div
               className="flex flex-col md:flex-row justify-between md:items-center p-6 gap-6 cursor-pointer hover:bg-[#232323] transition"
-              onClick={() => toggleDropdown(podcast.id)}
+              // onClick={() => toggleDropdown(podcast.id)}
             >
               <div className="flex flex-col md:flex-row md:items-center gap-6 flex-1">
-                <img
+                <Image
                   src={podcast.thumbnail}
+                  height={880}
+                  width={560}
                   alt="Thumbnail"
                   className="w-44 h-28 object-cover rounded-md shadow-sm"
                 />
@@ -73,59 +78,14 @@ export default function Index() {
                   </p>
                 </div>
               </div>
-
-              {/* Chevron Icon */}
-              <div
-                className={`transition-transform duration-300 ${
-                  active === podcast.id ? "rotate-180" : ""
-                }`}
-              >
-                <FaChevronDown size={18} className="text-gray-400" />
-              </div>
             </div>
-
-            {/* Files Dropdown */}
-            {active === podcast.id && (
-              <div className="bg-[#111111] pb-6 pt-2 border-t border-gray-700">
-                {podcast && podcast?.files && podcast?.files?.length === 0 ? (
-                  <p className="text-gray-400 mt-3">No files available.</p>
-                ) : (
-                  podcast && podcast?.files && podcast?.files?.map((file) => (
-                    <div
-                      key={file.id}
-                      className="bg-[#1f1f1f] p-5 rounded-xl mb-4 shadow-md"
-                    >
-                      <div className="flex justify-between items-center mb-3">
-                        <h4 className="text-xl font-semibold">{file.title}</h4>
-                        <p className="text-sm text-gray-400">
-                          {file.duration} mins • {file.size} MB
-                        </p>
-                      </div>
-
-                      <video
-                        src={file.link}
-                        controls
-                        className="w-full rounded-lg border border-[#333] bg-black"
-                      >
-                        Your browser does not support the video tag.
-                      </video>
-
-                      <a
-                        href={file.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-block mt-3 text-sm text-blue-400 hover:underline"
-                      >
-                        🔗 Open Video in New Tab
-                      </a>
-                    </div>
-                  ))
-                )}
-              </div>
-            )}
           </div>
         ))}
       </div>
+      <AddPodcast
+        isOpen={isPodcastPopupOpen}
+        onClose={()=>{setIsPodcastPopupOpen(false);}}
+      />
     </AuthLayout>
   );
 }
