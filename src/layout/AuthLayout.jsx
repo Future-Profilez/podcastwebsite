@@ -1,97 +1,64 @@
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import toast from "react-hot-toast";
-import Link from "next/link";
-import { MdLogout } from "react-icons/md";
-import { IoSettingsOutline } from "react-icons/io5";
-import { FaRegUser } from "react-icons/fa6";
-import SideBar from "./sidebar";
+import * as React from "react";
+import { TbLogout } from "react-icons/tb";
+import { HiOutlineUserCircle } from "react-icons/hi2";
+import Sidebar from "./sidebar";
 
-export default function AuthLayout({ children, page }) {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const router = useRouter();
-
-  // const handleLogout = () => {
-  //   localStorage && localStorage.removeItem("token");
-  //   router.push("/login");
-  //   toast.success("Logout Successfully");
-  //   setUser(null);
-  // };
-
-  // const fetchData = async (signal) => {
-  //   try {
-  //     const main = new Listing();
-  //     const response = await main.profileVerify(signal);
-  //     if (response.data) {
-  //       setUser(response.data.data.user);
-  //     }
-  //     if (!response?.data?.data?.user?.email_verify) {
-  //       router.push("/verify");
-  //     }
-  //   } catch (error) {
-  //     console.log("error", error);
-  //     localStorage?.removeItem("token");
-  //     setUser(null);
-  //     router.push("/login");
-  //     toast.error("Please log in first.");
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const controller = new AbortController();
-  //   const { signal } = controller;
-  //   fetchData(signal);
-  //   return () => controller.abort();
-  // }, []);
-
+export default function AuthLayout({ children, heading }) {
+  const [toggle, setToggle] = React.useState(false);
+  function showSidebar() {
+    setToggle(!toggle);
+  }
   return (
-    <div className="md:flex flex-wrap bg-[#0e0e0e] text-white items-start">
-      <SideBar />
-      <div className="w-full lg:ml-[286px] lg:w-[calc(100%-286px)]">
-        <div className="fixed right-0 z-10 pl-0 lg:pl-[30px] top-0 w-full lg:w-[calc(100%-286px)]">
-          <div className="justify-between px-4 md:px-5 lg:px-[30px] py-3 lg:py-4 top-0 bg-[#1a1a1a] flex items-center w-full flex-wrap rounded-b-[10px] shadow-md">
-            <div className="w-7/12 sm:w-4/12 pl-6 lg:pl-0">
-              <h1 className="text-[#CC2828] text-lg sm:text-xl lg:text-2xl tracking-[-0.04em] font-semibold">
-                {page || "Dashboard"}
-              </h1>
-            </div>
-            <div className="w-5/12 sm:w-8/12 flex justify-end space-x-2.5 md:space-x-4">
-              <div className="relative">
-                <button
-                  className="border border-[#333] rounded-md lg:rounded-xl w-[44px] lg:w-[48px] h-[34px] lg:h-[38px] flex items-center justify-center text-[#CC2828] bg-[rgba(204,40,40,0.15)] hover:bg-[#CC2828] hover:text-white cursor-pointer"
-                  onClick={() => setDropdownOpen(!dropdownOpen)}
-                >
-                  <FaRegUser size={18} />
-                </button>
-                {dropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-[#1f1f1f] border border-gray-700 rounded-md shadow-lg z-50">
-                    <ul className="py-1">
-                      <Link
-                        href={`/`}
-                        className="flex gap-2 px-4 py-2 text-gray-300 hover:bg-[#2a2a2a] cursor-pointer"
-                      >
-                        <IoSettingsOutline size={20} /> Settings
-                      </Link>
-                      <li
-                        className="flex gap-2 px-4 py-2 text-gray-300 hover:bg-[#2a2a2a] cursor-pointer"
-                        // onClick={handleLogout}
-                      >
-                        <MdLogout size={20} /> Logout
-                      </li>
-                    </ul>
-                  </div>
-                )}
+    <>
+      {toggle ? (
+        <div
+          onClick={showSidebar}
+          className="fixed top-0 left-0 w-full h-full bg-[#0009] blur z-[9999]"
+        ></div>
+      ) : (
+        ""
+      )}
+      <div className="auth-wrap flex justify-between max-lg:flex-wrap">
+        <main className="main-wrap">
+          <header className="fixed top-0 left-0 w-full z-[9998] bg-black shadow-lg border-b border-gray-800 px-6 md:px-7 py-2 xl:py-4 flex items-center justify-between">
+            <img
+              className="max-w-[170px]"
+              src="https://images.carriercms.com/image/upload/carrier/residential-hvac/adkit/Logos/Carrier/Full_color_wWhite_tagline_thumb.png"
+            />
+            <div className="flex gap-2 items-center">
+              <div className="hidden md:flex items-center">
+                <div>
+                  <HiOutlineUserCircle color="white" size="2.5rem" />
+                </div>
+                <div className="text-start me-4 ps-2">
+                  <h2 className="capitalize font-bold text-white">Naveen</h2>
+                  <p className="capitalize text-sm mt-[-3px] text-gray-400">
+                    co-founder
+                  </p>
+                </div>
               </div>
+              <button className="hidden md:flex">
+                <TbLogout color="#fff" className="me-2" size={"2rem"} />
+              </button>
+
+              <button
+  onClick={showSidebar}
+  className="block md:hidden flex flex-col gap-[4px] px-2 py-1 rounded-md border border-gray-700"
+>
+  <span className="w-5 h-[2px] bg-white" />
+  <span className="w-5 h-[2px] bg-white" />
+  <span className="w-5 h-[2px] bg-white" />
+</button>
+            </div>
+          </header>
+          <div className="flex w-screen overflow-hidden">
+            <Sidebar toggle={toggle} />
+            <div className="content md:max-h-[100vh] overflow-y-auto lg:w-[calc(100%-300px)] p-6 md:p-8 !pt-[120px]   lg:!pt-[150px] w-full">
+              {children}
             </div>
           </div>
-        </div>
-
-        <div className="pl-0 md:pl-5 lg:pl-[30px] pt-20 lg:pt-24 pb-8 bg-[#121212]">
-          <div className="bg-[#1a1a1a] rounded-[10px] lg:rounded-[10px] p-4">
-            {children}
-          </div>
-        </div>
+        </main>
       </div>
-    </div>
+    </>
   );
 }

@@ -14,8 +14,9 @@ export default function Detail() {
   const [loading, setLoading] = useState(false);
   const [isEpisodePopupOpen, setIsEpisodePopupOpen] = useState(false);
   const [data, setData] = useState([]);
+  const [selectedEpisode, setSelectedEpisode] = useState(null);
 
-  const fetchPodcasts = async (slug) => {
+  const fetchDetails = async (slug) => {
     try {
       setLoading(true);
       const main = new Listing();
@@ -30,14 +31,14 @@ export default function Detail() {
 
   useEffect(() => {
     if (slug) {
-      fetchPodcasts(slug);
+      fetchDetails(slug);
     }
   }, [slug]);
-  console.log("data", data);
+  // console.log("data", data);
 
   return (
     <AuthLayout>
-      <div className="rounded-xl w-full mx-auto detail_bg text-white p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:gap-8">
+      <div className="rounded-xl w-full mx-auto bg-[#e65b96] text-white p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:gap-8">
         {/* Profile Image */}
         <div className="w-44 h-44 min-w-44 md:w-44 md:h-44 md:min-w-44 relative rounded-full overflow-hidden border-4 border-white shadow-md mx-auto sm:mx-0">
           <Image
@@ -73,18 +74,24 @@ export default function Detail() {
         <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Episodes</h2>
         <button className="rounded-[40px] button-bg py-1 sm:py-2 px-3 sm:px-5 cursor-pointer text-sm sm:text-base md:text-md"
-         onClick={()=>{setIsEpisodePopupOpen(true);}}
+         onClick={()=>{
+          setSelectedEpisode(null);
+          setIsEpisodePopupOpen(true);
+        }}
         >
             Add New Episode
         </button>
         </div>
       {data && data?.files && data?.files?.map((item,index)=>(
-        <EpisodeCard episode={item} key={index}/>
+        <EpisodeCard episode={item} key={index} setIsEpisodePopupOpen={setIsEpisodePopupOpen} setSelectedEpisode={setSelectedEpisode}/>
       ))}
       </div>
       <AddEpisode
         isOpen={isEpisodePopupOpen}
         onClose={()=>{setIsEpisodePopupOpen(false);}}
+        podcast={data}
+        fetchDetails={fetchDetails}
+        selectedEpisode={selectedEpisode}
       />
     </AuthLayout>
   );

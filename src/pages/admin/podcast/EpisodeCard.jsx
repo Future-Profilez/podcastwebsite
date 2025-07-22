@@ -1,50 +1,127 @@
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import moment from "moment";
 import { BsThreeDots } from "react-icons/bs";
+import { FaPlay } from "react-icons/fa";
+import { MdEdit } from "react-icons/md";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
-export default function EpisodeCard({ episode }) {
+export default function EpisodeCard({ episode, setIsEpisodePopupOpen, setSelectedEpisode }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const menuRef = useRef();
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleUpdate = () => {
+    setShowMenu(false);
+    console.log("Update", episode.id); // Replace with your logic
+  };
+
+  const handleDelete = () => {
+    setShowMenu(false);
+    console.log("Delete", episode.id); // Replace with your logic
+  };
+
   return (
-    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 py-4 border-b border-gray-700">
-      {/* Thumbnail */}
-      <div className="w-full sm:w-32 h-28 relative rounded-lg overflow-hidden">
-        <Image
-          src={
-            episode?.thumbnail ||
-            "https://logistics-manage.s3.eu-north-1.amazonaws.com/files/31616de2-c5e9-4401-84db-9b0f4f08d119-forbes.jpg"
-          }
-          alt={episode?.title}
-          layout="fill"
-          objectFit="cover"
-          className="rounded-lg"
-        />
-      </div>
-
-      {/* Content */}
-      <div className="flex-1 w-full">
-        {/* Date and Title */}
-        <div className="text-sm text-gray-400 font-medium whitespace-nowrap">
-          {episode?.createdAt
-            ? moment(episode.createdAt).fromNow().toUpperCase()
-            : ""}
+    <>
+      <div
+        className="group flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 py-4 border-b border-gray-700 hover:bg-white/5 transition-colors duration-200 cursor-pointer"
+        onClick={() => setIsOpen(true)}
+      >
+        {/* Thumbnail */}
+        <div className="w-full sm:w-32 h-28 relative rounded-lg overflow-hidden">
+          <Image
+            src={episode?.thumbnail || ""}
+            alt={episode?.title}
+            layout="fill"
+            objectFit="cover"
+            className="rounded-lg"
+          />
+          {/* Hover Play Icon */}
+          <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+            <FaPlay className="text-white text-lg sm:text-2xl" />
+          </div>
         </div>
 
-        {/* Title */}
-        <h2 className="text-white font-semibold mt-1 text-base sm:text-lg leading-snug">
-          {episode?.title}
-        </h2>
+        {/* Content */}
+        <div className="flex-1 w-full">
+          <div className="text-sm text-gray-400 font-medium whitespace-nowrap">
+            {episode?.createdAt
+              ? moment(episode.createdAt).fromNow().toUpperCase()
+              : ""}
+          </div>
+          <h2 className="text-white font-semibold mt-1 text-base sm:text-lg leading-snug group-hover:underline capitalize">
+            {episode?.title}
+          </h2>
+          <p className="text-sm text-gray-300 mt-1">{episode?.description}</p>
+        </div>
 
-        {/* Description */}
-        <p className="text-sm text-gray-300 mt-1 line-clamp-2">
-          {episode?.description}
-        </p>
+        {/* Duration */}
+        <div className="text-sm text-gray-400 mt-2 sm:mt-0 sm:ml-4 whitespace-nowrap">
+          {episode?.duration} mins
+        </div>
+
+        {/* Dropdown Menu Trigger */}
+        <div className="relative" onClick={(e) => e.stopPropagation()}>
+          <BsThreeDots
+            className="text-gray-400 text-xl cursor-pointer"
+            onClick={() => setShowMenu((prev) => !prev)}
+          />
+          {showMenu && (
+            <div
+              ref={menuRef}
+              className="absolute right-0 w-32 bg-[#1c1c1c] border border-gray-700 rounded-md shadow-lg z-10"
+            >
+              <button
+                onClick={()=>{
+                  setSelectedEpisode(episode);
+                  setShowMenu(false);
+                  setIsEpisodePopupOpen(true);
+                }}
+                className="flex gap-2 items-center w-full px-4 py-2 text-sm text-white hover:bg-white/10 text-left border-b border-gray-700 cursor-pointer"
+              >
+                Edit <MdEdit size={16}/>
+              </button>
+              <button
+                onClick={handleDelete}
+                className="flex gap-2 items-center w-full px-4 py-2 text-sm text-red-400 hover:bg-white/10 text-left cursor-pointer"
+              >
+                Delete <RiDeleteBin5Line size={16}/>
+              </button>
+            </div>
+          )}
+        </div>
       </div>
-      {/* Duration */}
-      <div className="text-sm text-gray-400 mt-2 sm:mt-0 sm:ml-4 whitespace-nowrap">
-        {episode?.duration} min
-      </div>
-      <div className="">
-        <BsThreeDots className="text-gray-400 text-xl cursor-pointer" />
-      </div>
-    </div>
+
+      {/* Video Player Modal */}
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+          <div className="bg-black p-4 rounded-lg relative w-[90vw] max-w-3xl">
+            <button
+              className="absolute top-0.5 right-2 text-white text-4xl cursor-pointer"
+              onClick={() => setIsOpen(false)}
+            >
+              &times;
+            </button>
+            <video
+              controls
+              autoPlay
+              className="w-full h-auto rounded"
+              src={episode?.link}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

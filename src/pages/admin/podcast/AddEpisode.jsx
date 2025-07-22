@@ -1,19 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Popup from "@/common/Popup";
 import toast from "react-hot-toast";
 import Listing from "@/pages/api/Listing";
 
-export default function AddEpisode({ isOpen, onClose }) {
+export default function AddEpisode({
+  isOpen,
+  onClose,
+  podcast,
+  fetchDetails,
+  selectedEpisode,
+}) {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    Cast: "",
     thumbnail: null,
     video: null,
   });
-
   const [thumbnailPreview, setThumbnailPreview] = useState(null);
+  console.log("selectedEpisode", selectedEpisode);
+
+  useEffect(() => {
+    setFormData({
+      title: selectedEpisode?.title || "",
+      description: selectedEpisode?.description || "",
+      thumbnail: selectedEpisode?.thumbnail || null,
+      video: selectedEpisode?.link || null,
+    });
+
+    if (selectedEpisode?.thumbnail) {
+      setThumbnailPreview(selectedEpisode.thumbnail);
+      return;
+    }
+    setThumbnailPreview(null);
+  }, [selectedEpisode]);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -59,28 +79,29 @@ export default function AddEpisode({ isOpen, onClose }) {
     setLoading(true);
     try {
       const main = new Listing();
-      const castArray = formData.Cast
-        ? formData.Cast.split(",").map((c) => c.trim())
-        : [];
       const payload = new FormData();
       payload.append("title", formData.title);
       payload.append("description", formData.description);
-      if (formData.Cast) payload.append("Cast", JSON.stringify(castArray));
+      payload.append("podcastId", podcast?.id);
       if (formData.thumbnail) payload.append("thumbnail", formData.thumbnail);
       if (formData.video) payload.append("video", formData.video);
-
-      const response = await main.PodcastAdd(payload);
+      let size = 0;
+      if (formData.video) {
+        size = Number((formData.video.size / (1024 * 1024)).toFixed(2)) || 0;
+      }
+      payload.append("size", size);
+      const response = await main.EpisodeAdd(payload);
 
       if (response?.data?.status) {
         toast.success(response.data.message);
         setFormData({
           title: "",
           description: "",
-          Cast: "",
           thumbnail: null,
           video: null,
         });
         setThumbnailPreview(null);
+        fetchDetails(podcast?.uuid);
         onClose();
       } else {
         toast.error(response.data.message);
@@ -93,64 +114,95 @@ export default function AddEpisode({ isOpen, onClose }) {
     }
   };
 
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    if (loading) return;
+    setLoading(true);
+    try {
+      const main = new Listing();
+      const payload = new FormData();
+      payload.append("title", formData.title);
+      payload.append("description", formData.description);
+      payload.append("podcastId", podcast?.id);
+      if (formData.thumbnail instanceof File) {
+        payload.append("thumbnail", formData.thumbnail);
+      }
+      if (formData.video instanceof File) {
+        payload.append("video", formData.video);
+      }
+      let size = 0;
+      if (formData.video) {
+        size = Number((formData.video.size / (1024 * 1024)).toFixed(2)) || 0;
+      }
+      payload.append("size", size);
+      const response = await main.EpisodeAdd(payload);
+
+      if (response?.data?.status) {
+        toast.success(response.data.message);
+        setFormData({
+          title: "",
+          description: "",
+          thumbnail: null,
+          video: null,
+        });
+        setThumbnailPreview(null);
+        fetchDetails(podcast?.uuid);
+        onClose();
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.error("API error:", error);
+      toast.error(error?.response?.data?.message || "Something went wrong!");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // console.log("formData",formData);
+
   return (
     <Popup isOpen={isOpen} onClose={onClose} size="max-w-lg">
-      <form onSubmit={handleSubmit} className="space-y-4 text-white rounded-md">
-        <h3 className="text-2xl font-bold text-white mb-4 text-center w-full">
-          Add Podcast
+      <form onSubmit={selectedEpisode ? handleUpdate : handleSubmit} className="w-full text-white space-y-6">
+        <h3 className="text-3xl font-bold text-center heading">
+          {selectedEpisode ? "Edit Episode" : "Add Episode"}
         </h3>
 
         {/* Title */}
-        <div>
-          <label className="block mb-1 text-sm font-medium text-white">
+        <div className="space-y-1">
+          <label className="block text-sm font-medium">
             Title <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
             name="title"
-            className="w-full p-2 rounded bg-[#1c1c1c] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
+            className="w-full p-3 rounded-lg bg-[#1c1c1c] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
             value={formData.title}
             onChange={handleChange}
           />
         </div>
 
         {/* Description */}
-        <div>
-          <label className="block mb-1 text-sm font-medium text-white">
-            Description
-          </label>
+        <div className="space-y-1">
+          <label className="block text-sm font-medium">Description</label>
           <textarea
             name="description"
-            rows="3"
-            className="w-full p-2 rounded bg-[#1c1c1c] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
+            rows="4"
+            className="w-full p-3 rounded-lg bg-[#1c1c1c] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
             value={formData.description}
             onChange={handleChange}
           />
         </div>
 
-        {/* Cast */}
-        <div>
-          <label className="block mb-1 text-sm font-medium text-white">
-            Cast <span className="text-xs text-white">(Comma-separated)</span>
-          </label>
-          <input
-            type="text"
-            name="Cast"
-            className="w-full p-2 rounded bg-[#1c1c1c] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
-            value={formData.Cast}
-            onChange={handleChange}
-          />
-        </div>
-
-        {/* Thumbnail Uploader */}
-        <div>
-          <label className="block mb-1 text-sm font-medium text-white">
+        {/* Thumbnail */}
+        <div className="space-y-1">
+          <label className="block text-sm font-medium">
             Thumbnail <span className="text-red-500">*</span>
           </label>
           <div
             onDrop={handleDrop}
             onDragOver={handleDragOver}
-            className="w-64 h-64 bg-[#1c1c1c] border border-dashed border-gray-500 rounded flex items-center justify-center text-gray-400 cursor-pointer hover:border-white relative"
+            className="relative w-full h-64 bg-[#1c1c1c] border-2 border-dashed border-gray-600 rounded-xl flex items-center justify-center text-gray-400 cursor-pointer hover:border-white transition"
           >
             {thumbnailPreview ? (
               <img
@@ -159,7 +211,9 @@ export default function AddEpisode({ isOpen, onClose }) {
                 className="h-full object-contain rounded"
               />
             ) : (
-              <p>Drag & drop image or click to select</p>
+              <p className="text-center text-sm">
+                Drag & drop or click to upload
+              </p>
             )}
             <input
               type="file"
@@ -171,9 +225,9 @@ export default function AddEpisode({ isOpen, onClose }) {
           </div>
         </div>
 
-        {/* Video Uploader */}
-        <div>
-          <label className="block mb-1 text-sm font-medium text-white">
+        {/* Video */}
+        <div className="space-y-1">
+          <label className="block text-sm font-medium">
             Video <span className="text-red-500">*</span>
           </label>
           <input
@@ -181,16 +235,22 @@ export default function AddEpisode({ isOpen, onClose }) {
             name="video"
             accept="video/*"
             onChange={handleChange}
-            className="w-full text-sm text-gray-400 file:bg-white file:text-black file:rounded file:px-4 file:py-1"
+            className="w-full text-sm text-gray-400 file:bg-white file:text-black file:rounded-lg file:px-4 file:py-2 border border-gray-700 bg-[#1c1c1c]"
           />
+          {typeof formData.video === "string" && selectedEpisode && (
+            <video controls className="mt-2 w-full rounded-lg">
+              <source src={selectedEpisode.link} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          )}
         </div>
 
-        {/* Submit Button */}
+        {/* Submit */}
         <div className="pt-2">
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-white text-black font-semibold py-2 rounded-md transition cursor-pointer"
+            className="w-full button-bg font-semibold py-3 rounded-lg transition cursor-pointer"
           >
             {loading ? "Submitting..." : "Submit"}
           </button>

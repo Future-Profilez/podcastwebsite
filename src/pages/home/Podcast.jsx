@@ -30,7 +30,7 @@ export default function Podcast() {
     fetchPodcasts();
   }, []);
 
-  console.log(data)
+  console.log("data",data);
   return (
     <section className="bg-black text-white  py-12 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1440px]  ">
@@ -61,11 +61,11 @@ export default function Podcast() {
         <HeadingTopic title="Popular Podcasts" />
         {loading ? (
           <LoadingSpinner count={5} />
-         ) : data?.length === 0 ? (
+         ) : data && data?.length === 0 ? (
           <NoData heading="No podcasts available." />
          ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {data.map((podcast, index) => (
+            {data && data?.map((podcast, index) => (
               <Card key={index} podcast={podcast} index={index} />
             ))}
           </div>

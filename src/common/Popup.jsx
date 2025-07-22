@@ -17,8 +17,10 @@ const Popup = ({ isOpen, onClose, children, size }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/60 z-50 px-3">
-      <div className={`bg-[#1c1c1c] rounded-lg w-full shadow-xl border border-gray-700 ${size}`}>
+    <div className="fixed inset-0 flex items-center justify-center bg-black/60 z-[10000] px-3">
+      <div
+        className={`bg-[#1c1c1c] rounded-lg w-full shadow-xl border border-gray-700 ${size}`}
+      >
         <div className="p-4 text-white overflow-y-auto max-h-[80vh] relative">
           <button
             onClick={onClose}

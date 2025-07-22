@@ -3,13 +3,14 @@ import Popup from "@/common/Popup";
 import toast from "react-hot-toast";
 import Listing from "@/pages/api/Listing";
 
-export default function AddPodcast({ isOpen, onClose }) {
+export default function AddPodcast({ isOpen, onClose, fetchPodcasts }) {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     Author: "",
     Cast: "",
     thumbnail: null,
+    description: "",
   });
 
   const [thumbnailPreview, setThumbnailPreview] = useState(null);
@@ -40,7 +41,7 @@ export default function AddPodcast({ isOpen, onClose }) {
       setFormData((prev) => ({ ...prev, thumbnail: file }));
       setThumbnailPreview(URL.createObjectURL(file));
     } else {
-        toast.error("Only image files are allowed");
+      toast.error("Only image files are allowed");
     }
   };
 
@@ -55,22 +56,25 @@ export default function AddPodcast({ isOpen, onClose }) {
     try {
       const main = new Listing();
       const castArray = formData.Cast
-      ? formData.Cast.split(",").map((c) => c.trim())
-      : [];
+        ? formData.Cast.split(",").map((c) => c.trim())
+        : [];
       const payload = new FormData();
       payload.append("name", formData.name);
       if (formData.Author) payload.append("Author", formData.Author);
       if (formData.Cast) payload.append("Cast", JSON.stringify(castArray));
       payload.append("thumbnail", formData.thumbnail);
+      payload.append("description", formData.description);
       const response = await main.PodcastAdd(payload);
       if (response?.data?.status) {
         toast.success(response.data.message);
         setFormData({
-           name: "",
-           Author: "",
-           Cast: "",
-           thumbnail: null,
+          name: "",
+          Author: "",
+          Cast: "",
+          thumbnail: null,
+          description: "",
         });
+        fetchPodcasts();
         onClose();
       } else {
         toast.error(response.data.message);
@@ -85,82 +89,90 @@ export default function AddPodcast({ isOpen, onClose }) {
 
   return (
     <Popup isOpen={isOpen} onClose={onClose} size="max-w-lg">
-      <form
-        onSubmit={handleSubmit}
-        className="space-y-4 text-white rounded-md"
-      >
-        <h3 className="text-2xl font-bold text-white mb-4 text-center w-full">
-         Add Podcast
-        </h3>
-
-        {/* Name */}
-        <div>
-          <label className="block mb-1 text-sm font-medium text-white">
-            Name <span className="text-red-500">*</span>
-          </label>
-          <input
-            type="text"
-            name="name"
-            className="w-full p-2 rounded bg-[#1c1c1c] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
-            value={formData.name}
-            onChange={handleChange}
-          />
-        </div>
-
-        {/* Author */}
-        <div>
-          <label className="block mb-1 text-sm font-medium text-white">
-            Author
-          </label>
-          <input
-            type="text"
-            name="Author"
-            className="w-full p-2 rounded bg-[#1c1c1c] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
-            value={formData.Author}
-            onChange={handleChange}
-          />
-        </div>
-
-        {/* Cast */}
-        <div>
-          <label className="block mb-1 text-sm font-medium text-white">
-            Cast{" "}
-            <span className="text-xs text-white">(Comma-separated)</span>
-          </label>
-          <input
-            type="text"
-            name="Cast"
-            className="w-full p-2 rounded bg-[#1c1c1c] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white"
-            value={formData.Cast}
-            onChange={handleChange}
-          />
-        </div>
-
-        {/* Image Uploader */}
-        <div className="">
-          <label className="block mb-1 text-sm font-medium text-white">
-            Thumbnail <span className="text-red-500">*</span>
-          </label>
-          <div
-            onDrop={handleDrop}
-            onDragOver={handleDragOver}
-            className="w-64 h-64 bg-[#1c1c1c] border border-dashed border-gray-500 rounded flex items-center justify-center text-gray-400 cursor-pointer hover:border-white"
-          >
-            {thumbnailPreview ? (
-              <img
-                src={thumbnailPreview}
-                alt="Preview"
-                className="h-full object-contain rounded"
-              />
-            ) : (
-              <p>Drag & drop image or click to select</p>
-            )}
+      <form onSubmit={handleSubmit} className=" w-full text-white">
+        <h3 className="text-3xl font-bold text-center heading">Add Podcast</h3>
+        <div className="space-y-6">
+          {/* Name */}
+          <div className="space-y-1">
+            <label className="block text-sm font-medium">
+              Name <span className="text-red-500">*</span>
+            </label>
             <input
-              type="file"
-              name="thumbnail"
-              accept="image/*"
+              type="text"
+              name="name"
+              className="w-full p-3 rounded-lg bg-[#1c1c1c] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
+              value={formData.name}
               onChange={handleChange}
-              className="absolute opacity-0 cursor-pointer"
+            />
+          </div>
+
+          {/* Author */}
+          <div className="space-y-1">
+            <label className="block text-sm font-medium">Author</label>
+            <input
+              type="text"
+              name="Author"
+              className="w-full p-3 rounded-lg bg-[#1c1c1c] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
+              value={formData.Author}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* Cast */}
+          <div className="space-y-1">
+            <label className="block text-sm font-medium">
+              Cast{" "}
+              <span className="text-xs text-gray-400">(Comma-separated)</span>
+            </label>
+            <input
+              type="text"
+              name="Cast"
+              className="w-full p-3 rounded-lg bg-[#1c1c1c] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
+              value={formData.Cast}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* Thumbnail Uploader */}
+          <div className="space-y-2">
+            <label className="block text-sm font-medium">
+              Thumbnail <span className="text-red-500">*</span>
+            </label>
+            <div
+              onDrop={handleDrop}
+              onDragOver={handleDragOver}
+              className="relative w-full h-64 bg-[#1c1c1c] border-2 border-dashed border-gray-600 rounded-xl flex items-center justify-center text-gray-400 cursor-pointer hover:border-white transition"
+            >
+              {thumbnailPreview ? (
+                <img
+                  src={thumbnailPreview}
+                  alt="Preview"
+                  className="h-full object-contain rounded"
+                />
+              ) : (
+                <p className="text-center text-sm">
+                  Drag & drop or click to upload
+                </p>
+              )}
+              <input
+                type="file"
+                name="thumbnail"
+                accept="image/*"
+                onChange={handleChange}
+                className="absolute inset-0 opacity-0 cursor-pointer"
+              />
+            </div>
+          </div>
+
+          {/* Description */}
+          <div className="space-y-1">
+            <label className="block text-sm font-medium">Description</label>
+            <textarea
+              rows="4"
+              name="description"
+              className="w-full p-3 rounded-lg bg-[#1c1c1c] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
+              value={formData.description}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -169,7 +181,7 @@ export default function AddPodcast({ isOpen, onClose }) {
         <div className="pt-2">
           <button
             type="submit"
-            className="w-full bg-white text-black font-semibold py-2 rounded-md transition cursor-pointer"
+            className="w-full button-bg font-semibold py-3 rounded-lg transition cursor-pointer"
           >
             Submit
           </button>

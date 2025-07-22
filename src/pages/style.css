@@ -34,11 +34,11 @@ body{
 
 .hero_bg{background:var(--linear-gradient);}
 .detail_bg{background:var(--linear-gradient);}
-.button-bg{background:var(--pink); color:var(--white); font-weight: 600;}
+.button-bg {background: var(--pink);color: var(--white);font-weight: 600;}
+.button-bg:hover {background: var(--white);color: var(--pink);}
 .paragraph {  font-family: Poppins; color:var(--text-paragraph);}
 .heading{font-family: Inter;  color : var(--white);}
 .sidebar{  box-shadow: 0px 4px 74px 0px #0000000D;}
-
 
 .send {
   font-family: inherit;
