@@ -21,6 +21,15 @@ class Listing extends Component {
   async EpisodeAdd(data) {
     return Api.post("/file/add", data);
   }
+
+  async EpisodeUpdate(id,data) {
+    return Api.post(`/file/update/${id}`, data);
+  }
+
+  async EpisodeDelete(id) {
+    return Api.post(`/file/delete/${id}`);
+  }
+
   render() {
     return (
       <div>

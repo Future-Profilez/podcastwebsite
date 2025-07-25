@@ -5,10 +5,13 @@ import { BsThreeDots } from "react-icons/bs";
 import { FaPlay } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import Listing from "@/pages/api/Listing";
 
-export default function EpisodeCard({ episode, setIsEpisodePopupOpen, setSelectedEpisode }) {
+export default function EpisodeCard({ episode, setIsEpisodePopupOpen, setSelectedEpisode, fetchDetails }) {
   const [isOpen, setIsOpen] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
   const menuRef = useRef();
 
   // Close dropdown when clicking outside
@@ -22,14 +25,24 @@ export default function EpisodeCard({ episode, setIsEpisodePopupOpen, setSelecte
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleUpdate = () => {
-    setShowMenu(false);
-    console.log("Update", episode.id); // Replace with your logic
-  };
-
-  const handleDelete = () => {
-    setShowMenu(false);
-    console.log("Delete", episode.id); // Replace with your logic
+  const handleDelete = async(id) => {
+    if (deleteLoading) return;
+    setDeleteLoading(true);
+    try {
+      const main = new Listing();
+      const response = await main.EpisodeDelete(id);
+      if (response?.data?.status) {
+        toast.success(response.data.message);
+        fetchDetails();
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.error("API error:", error);
+      toast.error(error?.response?.data?.message || "Something went wrong!");
+    } finally {
+      setDeleteLoading(false);
+    }
   };
 
   return (
@@ -93,7 +106,10 @@ export default function EpisodeCard({ episode, setIsEpisodePopupOpen, setSelecte
                 Edit <MdEdit size={16}/>
               </button>
               <button
-                onClick={handleDelete}
+                onClick={()=>{
+                  setShowMenu(false);
+                  handleDelete(episode?.uuid);
+                }}
                 className="flex gap-2 items-center w-full px-4 py-2 text-sm text-red-400 hover:bg-white/10 text-left cursor-pointer"
               >
                 Delete <RiDeleteBin5Line size={16}/>

@@ -130,12 +130,11 @@ export default function AddEpisode({
       if (formData.video instanceof File) {
         payload.append("video", formData.video);
       }
-      let size = 0;
-      if (formData.video) {
-        size = Number((formData.video.size / (1024 * 1024)).toFixed(2)) || 0;
+      if (formData.video instanceof File) {
+        let size = Number((formData.video.size / (1024 * 1024)).toFixed(2)) || 0;
+        payload.append("size", size);
       }
-      payload.append("size", size);
-      const response = await main.EpisodeAdd(payload);
+      const response = await main.EpisodeUpdate(selectedEpisode?.uuid, payload);
 
       if (response?.data?.status) {
         toast.success(response.data.message);

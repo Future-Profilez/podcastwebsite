@@ -7,7 +7,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'logistics-manage.s3.eu-north-1.amazonaws.com',
+        hostname: 'podcast-website-bucket.s3.eu-north-1.amazonaws.com',
         pathname: '**',
       },
     ],

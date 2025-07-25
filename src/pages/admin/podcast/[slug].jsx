@@ -83,7 +83,7 @@ export default function Detail() {
         </button>
         </div>
       {data && data?.files && data?.files?.map((item,index)=>(
-        <EpisodeCard episode={item} key={index} setIsEpisodePopupOpen={setIsEpisodePopupOpen} setSelectedEpisode={setSelectedEpisode}/>
+        <EpisodeCard episode={item} key={index} setIsEpisodePopupOpen={setIsEpisodePopupOpen} setSelectedEpisode={setSelectedEpisode} fetchDetails={fetchDetails}/>
       ))}
       </div>
       <AddEpisode
