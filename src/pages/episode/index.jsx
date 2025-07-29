@@ -4,6 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import Podcast from "../../assets/episode.png"
 import Image from "next/image";
 import NewsletterBanner from "@/common/NewsletterBanner";
+import Heading from "@/common/Heading";
 
 export default function Index() {
 
@@ -51,12 +52,10 @@ export default function Index() {
             <div className="bg-[#0a0a0a]  pt-[118px] lg:pt-[128px] pb-[20px] ">
                 <div className="max-w-[1440px] mx-auto px-4 w-full">
                     {/* Heading Section */}
-                    <h1 className="text-[36px] sm:text-[44px] md:text-[55px] font-bold mb-4 text-center text-white font-inter">
-                        Browse All Episodes
-                    </h1>
-                    <p className="text-center text-[15px] sm:text-[16px] md:text-[18px] mb-8 text-white/80 font-inter max-w-3xl mx-auto">
-                        Explore our library of powerful episodes covering everything from equity leverage and financing to market predictions and tax strategies.
-                    </p>
+                       <Heading 
+                                        title={"  Browse All Episodes"}
+                                        content={"Explore our library of powerful episodes covering everything from equity leverage and financing to market predictions and tax strategies."}
+                                        />
 
                     {/* Search + Filter */}
                     <div className="flex flex-col md:flex-row justify-center items-center gap-4 mb-8">
@@ -100,7 +99,7 @@ export default function Index() {
                                 <div className="p-4 space-y-3">
                                     {/* Tag + Date */}
                                     <div className="flex justify-between items-center text-sm">
-                                        <span className="bg-[#111111] text-white px-3 py-[6px] rounded-lg text-[14px] font-inter font-medium">
+                                        <span className="bg-[#383535] text-white px-3 py-[6px] rounded-lg text-[14px] font-inter font-medium">
                                             {episode.category}
                                         </span>
                                         <span className="text-[#727272] text-[13px]">{episode.date}</span>
