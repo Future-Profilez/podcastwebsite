@@ -50,7 +50,7 @@ export default function Header() {
             <Link href="/episode" className="text-sm font-semibold ">Episode</Link>
             <Link href="/e-guide" className="text-sm font-semibold ">E-Guide</Link>
             <Link href="/about" className="text-sm font-semibold ">About</Link>
-            <Link href="/#contact" className="text-sm font-semibold ">Contact</Link>
+            <Link href="/contact" className="text-sm font-semibold ">Contact</Link>
           </nav>
           {/* Mobile Menu Open Button */}
 
@@ -101,7 +101,7 @@ export default function Header() {
 
                   </li>
                   <li>
-                    <Link href="/#contact" className="text-sm font-semibold ">Contact</Link>
+                    <Link href="/contact" className="text-sm font-semibold ">Contact</Link>
                   </li>
                 </ul>
               </div>

@@ -21,7 +21,7 @@ export default function Footer() {
               />
 
             </div>
-            <p className="text-[16px] sm:text-[18px] paragraph text-left mt-2">
+            <p className="text-[16px] sm:text-[18px] text-[#727272] paragraph text-left mt-2">
               Trusted in more than 100 countries & 5 million customers.
             </p>
           </div>
@@ -84,7 +84,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="mt-10 p-2 border-t border-gray-700 ">
-        <p className="text-[16px] sm:text-[18px] paragraph text-center">
+        <p className="text-[16px] sm:text-[18px] paragraph text-[#727272] text-center">
           © <Link href="https://pagedone.io" className="hover:underline">pagedone</Link> 2024, All rights reserved.
         </p>
       </div>
