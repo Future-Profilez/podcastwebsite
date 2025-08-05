@@ -47,7 +47,7 @@ export default function VideoPlayer() {
           playsInline
           controls
           autoPlay
-          className="w-full h-auto max-h-[80vh] rounded-lg"
+          className="w-auto h-full max-h-[80vh] rounded-lg"
         />
       </div>
     </div>

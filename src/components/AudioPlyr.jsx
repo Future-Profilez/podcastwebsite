@@ -1,31 +1,42 @@
-import { useEffect, useRef } from "react";
-import Plyr from "plyr";
+import AudioPlayer from "react-h5-audio-player";
+import "react-h5-audio-player/lib/styles.css";
 import { useAudioPlayer } from "@/context/AudioPlayerContext";
+import { useRef } from "react";
+import { FaBackward, FaForward } from "react-icons/fa";
 
 export default function AudioPlyr() {
   const { selectedEpisode, setIsPlaying } = useAudioPlayer();
   const playerRef = useRef(null);
 
-  useEffect(() => {
-    if (playerRef.current) {
-      const plyr = new Plyr(playerRef.current, {
-        controls: ['play', 'progress', 'current-time', 'mute', 'volume'],
-      });
+  const forward = () => {
+    const player = playerRef.current.audio.current;
+    if (player) player.currentTime += 10;
+  };
 
-      plyr.on("play", () => setIsPlaying(true));
-      plyr.on("pause", () => setIsPlaying(false));
+  const backward = () => {
+    const player = playerRef.current.audio.current;
+    if (player) player.currentTime -= 10;
+  };
 
-      return () => plyr.destroy();
-    }
-  }, [selectedEpisode?.link]);
+  if (!selectedEpisode?.link) return null;
 
   return (
-    <audio
+    <AudioPlayer
       ref={playerRef}
-      src={selectedEpisode?.link}
+      src={selectedEpisode.link}
       autoPlay
-      controls
-      className="w-full plyr-audio"
+      showJumpControls={false}
+      onPlay={() => setIsPlaying(true)}
+      onPause={() => setIsPlaying(false)}
+      customAdditionalControls={[
+        <button className="custom-skip-btn" onClick={backward} key="backward">
+          <FaBackward />
+        </button>,
+        <button className="custom-skip-btn" onClick={forward} key="forward">
+          <FaForward />
+        </button>,
+      ]}
+      className="rounded-lg"
     />
   );
 }
