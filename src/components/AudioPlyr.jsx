@@ -1,12 +1,21 @@
-import AudioPlayer from "react-h5-audio-player";
+import AudioPlayer, { RHAP_UI } from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import { useAudioPlayer } from "@/context/AudioPlayerContext";
 import { useRef } from "react";
 import { FaBackward, FaForward } from "react-icons/fa";
+import { GoScreenFull } from "react-icons/go";
 import Image from "next/image";
 
 export default function AudioPlyr() {
-  const { isPlaying, pauseTrack, playTrack, currentTrack, setIsMinimized, selectedEpisode, isMinimized } = useAudioPlayer();
+  const {
+    isPlaying,
+    pauseTrack,
+    playTrack,
+    currentTrack,
+    setIsMinimized,
+    selectedEpisode,
+    isMinimized,
+  } = useAudioPlayer();
   const playerRef = useRef(null);
 
   const forward = () => {
@@ -22,38 +31,48 @@ export default function AudioPlyr() {
   if (!selectedEpisode?.link) return null;
 
   return (
-    <div className="flex justify-between">
-    {isMinimized && 
-    <div className="flex gap-2 items-center">
-      <div className=" relative w-12 h-12">
-        <Image
-          src={selectedEpisode?.thumbnail || ""}
-          alt={selectedEpisode?.title}
-          layout="fill"
-          objectFit="cover"
-          className="rounded-lg"
-        />
-      </div>
-      <div className="text-sm w-1/2 capitalize">{selectedEpisode?.title || ""}</div>
-      </div>
-    } 
-    <AudioPlayer
-      ref={playerRef}
-      src={selectedEpisode.link}
-      autoPlay
-      showJumpControls={false}
-      onPlay={() => playTrack(selectedEpisode)}
-      onPause={pauseTrack}
-      // customAdditionalControls={[
-      //   <button className="custom-skip-btn" onClick={backward} key="backward">
-      //     <FaBackward />
-      //   </button>,
-      //   <button className="custom-skip-btn" onClick={forward} key="forward">
-      //     <FaForward />
-      //   </button>,
-      // ]}
-      className="rounded-lg"
-    />
+    <div className="flex justify-between z-[51] !bg-[#111827] sm:px-3">
+      {isMinimized && (
+        <div className="flex gap-2 items-center w-[16vw]">
+          <div className=" relative w-18 h-18">
+            <Image
+              src={selectedEpisode?.thumbnail || ""}
+              alt={selectedEpisode?.title}
+              layout="fill"
+              objectFit="cover"
+              className="rounded-lg"
+            />
+          </div>
+          <div className="text-sm">
+            <p className="capitalize">{selectedEpisode?.title || ""}</p>
+            <p className="line-clamp-1 text-gray-500 fon-tbold text-[12px]">
+              {selectedEpisode?.description || ""}
+            </p>
+          </div>
+        </div>
+      )}
+      <AudioPlayer
+        ref={playerRef}
+        src={selectedEpisode.link}
+        autoPlay
+        showJumpControls={false}
+        onPlay={() => playTrack(selectedEpisode)}
+        onPause={pauseTrack}
+        // customAdditionalControls={[
+        //   <button className="custom-skip-btn" onClick={backward} key="backward">
+        //     <FaBackward />
+        //   </button>,
+        //   <button className="custom-skip-btn" onClick={forward} key="forward">
+        //     <FaForward />
+        //   </button>,
+        // ]}
+         customVolumeControls={[
+          RHAP_UI.VOLUME,
+          <button className="pl-5 cursor-pointer" title="Enter Full Screen" onClick={() => setIsMinimized(false)}>
+            <GoScreenFull size={20}/>
+          </button>
+        ]}
+      />
     </div>
   );
 }

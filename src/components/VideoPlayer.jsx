@@ -1,16 +1,18 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Plyr from "plyr";
 import { useAudioPlayer } from "@/context/AudioPlayerContext";
 import { IoMdClose } from "react-icons/io";
+import "plyr/dist/plyr.css";
 
 export default function VideoPlayer() {
   const { selectedEpisode, setCurrentTrack, setSelectedEpisode } =
     useAudioPlayer();
   const videoRef = useRef(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     if (videoRef.current) {
-      new Plyr(videoRef.current, {
+      const player = new Plyr(videoRef.current, {
         controls: [
           "play",
           "progress",
@@ -20,6 +22,10 @@ export default function VideoPlayer() {
           "fullscreen",
         ],
       });
+
+      // Handle fullscreen events
+      player.on("enterfullscreen", () => setIsFullscreen(true));
+      player.on("exitfullscreen", () => setIsFullscreen(false));
     }
   }, [selectedEpisode?.link]);
 
@@ -27,11 +33,10 @@ export default function VideoPlayer() {
     <div className="fixed inset-0 z-50 bg-black flex justify-center p-4">
       <div className="relative w-full max-w-[90vw]">
         <div className="flex justify-between items-center">
-          <div className="p-6 text-left font-semibold text-lg">
+          <div className="p-6 text-left font-semibold text-lg text-white">
             {selectedEpisode?.title}
           </div>
           <button
-            // className="absolute top-2 right-2 text-white text-xl z-50 cursor-pointer"
             className="text-white text-xl cursor-pointer z-50"
             onClick={() => {
               setSelectedEpisode(null);
@@ -47,7 +52,9 @@ export default function VideoPlayer() {
           playsInline
           controls
           autoPlay
-          className="w-auto h-full max-h-[80vh] rounded-lg"
+          className={`w-auto h-full rounded-lg ${
+            isFullscreen ? "" : "max-h-[90vh]"
+          }`}
         />
       </div>
     </div>

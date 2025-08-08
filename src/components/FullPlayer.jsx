@@ -8,6 +8,7 @@ export default function FullPlayer() {
   return (
     <div
       className="flex flex-col text-white bg-gradient-to-b from-[#1e2f3f] to-[#304d60]"
+      style={{ height: "calc(100vh - 80px)" }}
     >
       <div className="flex justify-between items-center px-5">
         <div />

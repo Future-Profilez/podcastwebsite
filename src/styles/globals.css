@@ -29,9 +29,9 @@ body {
 .rhap_container {
   background-color: #111827 !important;
   color: #ffff !important;
-  border-radius: 10px !important;
+  /* border-radius: 10px !important; */
   padding: 16px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important; */
 }
 
 .rhap_progress-filled {
