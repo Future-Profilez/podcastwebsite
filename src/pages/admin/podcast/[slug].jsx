@@ -21,7 +21,7 @@ export default function Detail() {
     try {
       setLoading(true);
       const main = new Listing();
-      const response = await main.PodcastDetail(slug);
+      const response = await main.AdminPodcastDetail(slug);
       setData(response?.data?.data || []);
     } catch (error) {
       console.log("error", error);
@@ -78,8 +78,8 @@ export default function Detail() {
             Add New Episode
         </button>
         </div>
-      {data && data?.files && data?.files?.map((item,index)=>(
-        <EpisodeCard episode={item} key={index} setIsEpisodePopupOpen={setIsEpisodePopupOpen} setSelectedEpisode={setSelectedEpisode} fetchDetails={fetchDetails} isAdmin={true}/>
+      {data && data?.episodes && data?.episodes?.map((item,index)=>(
+        <EpisodeCard episode={item} key={index} setIsEpisodePopupOpen={setIsEpisodePopupOpen} setSelectedEpisode={setSelectedEpisode} fetchDetails={fetchDetails} isAdmin={true} slug={slug}/>
       ))}
       </div>
       <AddEpisode

@@ -19,6 +19,29 @@
   }
 }
 
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #111111;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #2e2e2e;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #4e4e4e;
+}
+.hidescrolll::-webkit-scrollbar {
+  width: 0px;
+}
 body {
   background: black;
   color: var(--foreground);
@@ -68,8 +91,3 @@ body {
 .rhap_time{
   color: #ffffff !important;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-

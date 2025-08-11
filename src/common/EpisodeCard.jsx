@@ -7,8 +7,9 @@ import { MdEdit } from "react-icons/md";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Listing from "@/pages/api/Listing";
 import { useAudioPlayer } from "@/context/AudioPlayerContext";
+import toast from "react-hot-toast";
 
-export default function EpisodeCard({ episode, setIsEpisodePopupOpen, setSelectedEpisode, fetchDetails, isAdmin=false }) {
+export default function EpisodeCard({ episode, setIsEpisodePopupOpen, setSelectedEpisode, fetchDetails, isAdmin=false, slug }) {
   const { playTrack } = useAudioPlayer();
   const [isOpen, setIsOpen] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
@@ -34,7 +35,7 @@ export default function EpisodeCard({ episode, setIsEpisodePopupOpen, setSelecte
       const response = await main.EpisodeDelete(id);
       if (response?.data?.status) {
         toast.success(response.data.message);
-        fetchDetails();
+        fetchDetails(slug);
       } else {
         toast.error(response.data.message);
       }
@@ -49,7 +50,8 @@ export default function EpisodeCard({ episode, setIsEpisodePopupOpen, setSelecte
   return (
     <>
       <div
-        className="group flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 py-4 border-b border-gray-700 hover:bg-white/5 transition-colors duration-200 cursor-pointer"
+        className={`group flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 py-4 border-b border-gray-700 hover:bg-white/5 
+          ${episode?.isDeleted ? "opacity-50" : ""} transition-colors duration-200 cursor-pointer`}
         onClick={() => playTrack(episode)}
       >
         {/* Thumbnail */}
@@ -114,7 +116,13 @@ export default function EpisodeCard({ episode, setIsEpisodePopupOpen, setSelecte
                 }}
                 className="flex gap-2 items-center w-full px-4 py-2 text-sm text-red-400 hover:bg-white/10 text-left cursor-pointer"
               >
-                Delete <RiDeleteBin5Line size={16} />
+                {episode?.isDeleted ? 
+                  "Enable"
+                  : 
+                <>
+                  Delete <RiDeleteBin5Line size={16} />
+                </>
+                }
               </button>
             </div>
           )}

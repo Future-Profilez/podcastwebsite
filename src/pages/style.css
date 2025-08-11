@@ -46,7 +46,7 @@ body{
 .heading{font-family: Inter;  color : var(--white);}
 .sidebar{  box-shadow: 0px 4px 74px 0px #0000000D;}
 
-.bg-theme {background: var(--pink);}
+.bg-theme {background: var(--pink) !important;}
 
 .send {
   font-family: inherit;

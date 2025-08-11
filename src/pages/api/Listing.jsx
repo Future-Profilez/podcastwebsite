@@ -17,33 +17,41 @@ class Listing extends Component {
   async PodcastGet() {
     return Api.get("/podcast/get")
   }
+
+  async AdminPodcastGet() {
+    return Api.get("/admin/podcast/get")
+  }
   
   async PodcastDetail(data) {
     return Api.get(`/podcast/get/${data}`);
   }
+
+  async AdminPodcastDetail(data) {
+    return Api.get(`/admin/podcast/get/${data}`);
+  }
   
   async PodcastAdd(data) {
-    return Api.post("/podcast/add", data);
+    return Api.post("/admin/podcast/add", data);
   }
 
   async PodcastUpdate(id,data) {
-    return Api.post(`/podcast/update/${id}`, data);
+    return Api.post(`/admin/podcast/update/${id}`, data);
   }
 
   async PodcastDelete(id) {
-    return Api.delete(`/podcast/delete/${id}`);
+    return Api.delete(`/admin/podcast/delete/${id}`);
   }
 
   async EpisodeAdd(data) {
-    return Api.post("/file/add", data);
+    return Api.post("/admin/file/add", data);
   }
 
   async EpisodeUpdate(id,data) {
-    return Api.post(`/file/update/${id}`, data);
+    return Api.post(`/admin/file/update/${id}`, data);
   }
 
   async EpisodeDelete(id) {
-    return Api.delete(`/file/delete/${id}`);
+    return Api.delete(`/admin/file/delete/${id}`);
   }
 
   async AddSubscriber(data){
