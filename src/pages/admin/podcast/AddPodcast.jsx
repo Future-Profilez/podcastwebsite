@@ -12,6 +12,8 @@ export default function AddPodcast({ isOpen, onClose, fetchPodcasts, selectedPod
     cast: "",
     thumbnail: null,
     description: "",
+    email: "",
+    language: "",
   });
   const [thumbnailPreview, setThumbnailPreview] = useState(null);
 
@@ -24,6 +26,10 @@ export default function AddPodcast({ isOpen, onClose, fetchPodcasts, selectedPod
               : selectedPodcast?.cast || "",
         thumbnail: selectedPodcast?.thumbnail || null,
         description: selectedPodcast?.description || "",
+        email: selectedPodcast?.email || "",
+        language: Array.isArray(selectedPodcast?.language)
+                  ? selectedPodcast.language.join(", ")
+                  : selectedPodcast?.language || "",
       });
   
       if (selectedPodcast?.thumbnail) {
@@ -76,10 +82,15 @@ export default function AddPodcast({ isOpen, onClose, fetchPodcasts, selectedPod
       const castArray = formData.cast
         ? formData.cast.split(",").map((c) => c.trim())
         : [];
+      const languageArray = formData.language
+        ? formData.language.split(",").map((l) => l.trim())
+        : [];
       const payload = new FormData();
       payload.append("name", formData.name);
       if (formData.author) payload.append("author", formData.author);
       if (formData.cast) payload.append("cast", JSON.stringify(castArray));
+      if (formData.email) payload.append("email", formData.email);
+      if (formData.language) payload.append("language", JSON.stringify(languageArray));
       payload.append("thumbnail", formData.thumbnail);
       payload.append("description", formData.description);
       const response = await main.PodcastAdd(payload);
@@ -91,6 +102,8 @@ export default function AddPodcast({ isOpen, onClose, fetchPodcasts, selectedPod
           cast: "",
           thumbnail: null,
           description: "",
+          email: "",
+          language: "",
         });
         fetchPodcasts();
         onClose();
@@ -114,10 +127,13 @@ export default function AddPodcast({ isOpen, onClose, fetchPodcasts, selectedPod
       const main = new Listing();
       console.log("formData.Cast", formData.cast);
       const castArray = JSON.stringify(formData.cast.split(",").map((s) => s.trim()));
+      const languageArray = JSON.stringify(formData.language.split(",").map((s) => s.trim()));
       const payload = new FormData();
       payload.append("name", formData.name);
       if (formData.author) payload.append("author", formData.author);
       if (formData.cast) payload.append("cast", castArray);
+      if (formData.email) payload.append("email", formData.email);
+      if (formData.language) payload.append("language", languageArray);
       payload.append("description", formData.description);
       if (formData.thumbnail instanceof File) {
         payload.append("thumbnail", formData.thumbnail);
@@ -189,6 +205,32 @@ export default function AddPodcast({ isOpen, onClose, fetchPodcasts, selectedPod
               name="cast"
               className="w-full p-3 rounded-lg bg-[#1c1c1c] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
               value={formData.cast}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* Email */}
+          <div className="space-y-1">
+            <label className="block text-sm font-medium">Email</label>
+            <input
+              type="email"
+              name="email"
+              className="w-full p-3 rounded-lg bg-[#1c1c1c] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* Language */}
+          <div className="space-y-1">
+            <label className="block text-sm font-medium">
+              Language <span className="text-xs text-gray-400">(Comma-separated)</span>
+            </label>
+            <input
+              type="text"
+              name="language"
+              className="w-full p-3 rounded-lg bg-[#1c1c1c] text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
+              value={formData.language}
               onChange={handleChange}
             />
           </div>

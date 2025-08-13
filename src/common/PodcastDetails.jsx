@@ -17,9 +17,9 @@ export default function PodcastDetails({ podcast }) {
             </div>
             <div>
                 <h1 className="text-3xl font-bold mb-1 text-white">{podcast?.name}</h1>
-                <p className="text-white">{podcast?.Author}</p>
+                <p className="text-white">Author: {podcast?.author}</p>
                 <div className="flex items-center text-[#727272]  mt-1">
-                    <span className="text-[12px] md:text-[14px] font-[400]">Cast: {podcast?.Cast?.join(",")}</span>
+                    <span className="text-[12px] md:text-[14px] font-[400]">Cast: {podcast?.cast?.join(",")}</span>
                 </div>
                 <p className="text-[16px] text-[#727272] font-[400] leading-snug mt-2">
                     {podcast?.description}

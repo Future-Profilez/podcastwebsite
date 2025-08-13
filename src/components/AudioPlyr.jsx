@@ -4,6 +4,7 @@ import { useAudioPlayer } from "@/context/AudioPlayerContext";
 import { useRef } from "react";
 import { FaBackward, FaForward } from "react-icons/fa";
 import { GoScreenFull } from "react-icons/go";
+import { BsFullscreenExit } from "react-icons/bs";
 import Image from "next/image";
 
 export default function AudioPlyr() {
@@ -68,9 +69,13 @@ export default function AudioPlyr() {
         // ]}
          customVolumeControls={[
           RHAP_UI.VOLUME,
-          <button className="pl-5 cursor-pointer" title="Enter Full Screen" onClick={() => setIsMinimized(false)}>
-            <GoScreenFull size={20}/>
-          </button>
+          <button className="pl-5 cursor-pointer" title="Enter Full Screen" onClick={() => setIsMinimized(!isMinimized)}>
+            {isMinimized ? 
+              <GoScreenFull size={20}/>
+            :
+            <BsFullscreenExit size={20} />
+          }
+          </button> 
         ]}
       />
     </div>

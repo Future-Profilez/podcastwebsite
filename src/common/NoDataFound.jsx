@@ -8,10 +8,10 @@ export default function NoData({ Heading, content, classNameName }) {
     return (
         <div className="grid min-h-full place-items-center  px-6 py-24 sm:py-32 lg:px-8">
             <div className="text-center">
-                <h1 className="mt-4 text-5xl font-semibold tracking-tight text-balance text-white-900 sm:text-7xl" > {Heading}</h1>
-                <p className="mt-6 text-lg font-medium text-pretty text-white-500 sm:text-xl/8">Sorry, we couldn’t find the page you’re looking for.</p>
-                <div className="mt-10 flex items-center justify-center gap-x-6 button-bg">
-                    <Link href="/" className="rounded-md  px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs ">Go back home</Link>
+                <h1 className="mt-4 text-5xl font-semibold tracking-tight text-balance text-white-900" > No Data found</h1>
+                <p className="mt-3 text-lg font-medium text-pretty text-white-500 sm:text-xl/8">There is no data on this page at the moment. Please come again later.</p>
+                <div className="mt-6 flex items-center justify-center gap-x-6 button-bg">
+                    <Link href="/" className="rounded-md  px-3.5 py-2.5 text-sm font-semibold shadow-xs ">Go back home</Link>
                 </div>
             </div>
         </div>

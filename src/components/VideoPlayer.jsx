@@ -30,7 +30,7 @@ export default function VideoPlayer() {
   }, [selectedEpisode?.link]);
 
   return (
-    <div className="fixed inset-0 z-50 bg-black flex justify-center p-4">
+    <div className="fixed inset-0 z-[99] bg-black flex justify-center p-4">
       <div className="relative w-full max-w-[90vw]">
         <div className="flex justify-between items-center">
           <div className="p-6 text-left font-semibold text-lg text-white">

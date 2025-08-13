@@ -91,7 +91,7 @@ export default function index() {
               </div>
             ))}
           </div> */}
-           {data && data?.files && data?.files?.map((item,index)=>(
+           {data && data?.episodes && data?.episodes?.map((item,index)=>(
               <EpisodeCard episode={item} key={index} setIsEpisodePopupOpen={false} setSelectedEpisode={null} fetchDetails={fetchDetails} isAdmin={false}/>
             ))}
         </div>
