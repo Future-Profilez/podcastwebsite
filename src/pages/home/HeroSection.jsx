@@ -1,47 +1,47 @@
-// components/HeroSection.jsx
-import Image from 'next/image';
-import React from 'react';
-import artistImg from "../../assets/artist.png"; // Replace with your image path
-
+import React from "react";
+import Image from "next/image";
+import { MdOutlineHeadphones } from "react-icons/md";
 
 function HeroSection() {
   return (
-    <div className="hero_bg pt-[118px] lg:pt-[128px] ">
-      <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1440px]  px-4">
-        <div className="flex flex-col lg:flex-row   relative">
-          {/* 40% - Text Section */}
-          <div className="w-full   text-white  ">
-            <h1 className="text-[30px] md:text-[36px] lg:text-[44px] xl:text-[48px] font-bold leading-[100%] mb-4 heading capitalize">
-              Where every <br /> music scene lives.
-            </h1>
+    <section className="relative h-[800px] flex items-center justify-center mt-20">
+      <div className="mx-auto container xl:max-w-[1440px] px-4 text-white flex flex-col lg:flex-row items-center justify-between">
+        {/* Left Content */}
+        <div className="max-w-xl text-center lg:text-left">
+          <h1 className="text-7xl font-extrabold leading-tight">
+            VOICE THAT{" "}
+            <span className="bg-[radial-gradient(50%_50%_at_50%_50%,#FC18D8_0%,#9747FF_100%)] bg-clip-text text-transparent block lg:inline">
+              MATTERS
+            </span>
+          </h1>
+          <p className="mt-4 text-lg text-gray-300">
+            Stories That Resonate. Real investment insights from property
+            experts who've been there, done that, and want to share the lessons.
+          </p>
 
-            <p className="text-[16px] md:text-[18px] lg:text-[20px] xl:text-[22px] mb-8 text-white ">
-              <span className="font-bold">Discover 400 million songs</span>, remixes and DJ sets — every chart-topping track you can find elsewhere, and millions more you can't find anywhere else.
-            </p>
+          <button className="mt-6 flex items-center gap-2 px-6 py-3 rounded-full font-semibold bg-theme mx-auto lg:mx-0">
+            <MdOutlineHeadphones size={20} />
+            Listen Now
+          </button>
+        </div>
 
-            <div className="flex flex-wrap gap-4">
-              <button className="rounded-[5px] border border-white text-black bg-white font-bold text-base  py-2 px-5 cursor-pointer">
-                Listen Now
-              </button>
-              <button className="rounded-[5px] border border-black text-black font-bold text-base  py-2 px-5 cursor-pointer">
-                Explore Episodes
-              </button>
-            </div>
-          </div>
-          {/* 30% - Image Section */}
-          <div className="w-full flex justify-center md:justify-right  md:mt-[-150px]  relative h-[400px] md:h-[500px] ">
+        {/* Right Image */}
+        <div className="relative mt-10 lg:mt-0 lg:ml-12 w-full max-w-md">
+          <div className="relative overflow-hidden rounded-xl shadow-lg">
             <Image
-              src={artistImg}
-              alt="Artist"
-              className="rounded-xl w-auto max-h-full absolute bottom-0"
-              width={400}
-              height={500}
+              src="/HeroImage.png"
+              alt="Podcast Host"
+              width={600}
+              height={350}
+              className="object-cover"
             />
           </div>
         </div>
       </div>
-    </div>
 
+      {/* Background */}
+      <div className="absolute inset-0 bg-[url('/hero-bg.png')] bg-no-repeat bg-center bg-cover z-[-1]" />
+    </section>
   );
 }
 

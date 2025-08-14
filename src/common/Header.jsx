@@ -27,7 +27,7 @@ export default function Header() {
   // console.log(router);
 
   return (
-    <nav className={`fixed w-full top-0 z-50  transition-all duration-300 ease-in-out  ${Scrolled ? router.pathname === "/" ? "bg-[#fff] text-black py-1 lg:py-1 hover:text-gray-300" : "bg-[#000000] text-white py-1 lg:py-1 hover:text-gray-300" : "bg-transparent  py-3  text-white lg:py-6 hover:text-gray-300"}`}>
+     <nav className={`fixed w-full top-0 z-50  transition-all duration-300 ease-in-out bg-black text-white py-4`}>
       <div className="mx-auto container sm:container md:container lg:container  xl:max-w-[1440px]   px-4">
         <div className="relative flex items-center justify-between">
 
