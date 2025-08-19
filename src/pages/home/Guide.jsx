@@ -54,20 +54,19 @@ export default function Guide() {
             key={guide.id}
             className="relative rounded-2xl p-[2px] bg-transparent transition"
           >
-            <div className="bg-[#2C2C2C] rounded-2xl p-6 flex gap-6 h-full">
+            <div className="bg-[#2C2C2C] rounded-2xl p-6 flex flex-col sm:flex-row gap-6 h-full">
               {/* Left Image */}
-              <div className="w-1/3 relative rounded-xl overflow-hidden">
+              <div className="relative w-full sm:w-1/3 h-40 sm:h-auto rounded-xl overflow-hidden">
                 <Image
                   src={"/guide.png"}
                   alt={guide.title}
-                  width={300}
-                  height={300}
-                  className="object-cover w-full h-full"
+                  fill
+                  className="object-cover"
                 />
               </div>
 
               {/* Right Content */}
-              <div className="w-2/3 flex flex-col justify-between">
+              <div className="flex-1 flex flex-col justify-between text-center sm:text-left">
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-2 transition">
                     {guide.title}

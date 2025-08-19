@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { FaStar } from "react-icons/fa";
@@ -46,24 +46,25 @@ export default function Testimonials() {
       {/* Heading */}
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold text-white">
-          WHAT{" "}
-          <span className="text-theme">
-            OUR LISTENER
-          </span>{" "}
-          SAY?
+          WHAT <span className="text-theme">OUR LISTENER</span> SAY?
         </h2>
       </div>
 
       {/* Swiper Slider */}
       <div className="relative">
         <Swiper
-          modules={[Navigation]}
+          modules={[Navigation, Autoplay]} // 👈 add Autoplay here
           navigation={{
             nextEl: ".swiper-button-next-custom",
             prevEl: ".swiper-button-prev-custom",
           }}
           spaceBetween={24}
           slidesPerView={1}
+          loop={true} // 👈 makes it loop infinitely
+          autoplay={{
+            delay: 3000, // 👈 auto slide every 3s
+            disableOnInteraction: false, // 👈 keeps autoplay after user interaction
+          }}
           breakpoints={{
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
