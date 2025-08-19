@@ -9,12 +9,12 @@ export default function InvestorSection() {
         <div className="text-white max-w-xl">
           <h2 className="text-4xl lg:text-5xl font-extrabold leading-tight">
             BUILT FOR{" "}
-            <span className="bg-[linear-gradient(270deg,#9747FF_0%,#FC18D8_97.09%)] bg-clip-text text-transparent">
+            <span className="text-theme">
               INVESTORS
             </span>
             .
             <br />
-            <span className="bg-[linear-gradient(270deg,#9747FF_0%,#FC18D8_97.09%)] bg-clip-text text-transparent">
+            <span className="text-theme">
               POWERED
             </span>{" "}
             BY EXPERIENCE.
@@ -35,7 +35,7 @@ export default function InvestorSection() {
             </p>
           </div>
 
-          <button className="mt-8 px-6 py-3 rounded-md font-semibold text-white bg-gradient-to-r from-pink-500 to-purple-500 hover:opacity-90 transition">
+          <button className="mt-8 px-6 py-3 rounded-md font-semibold bg-theme hover:opacity-90 transition">
             Learn More
           </button>
         </div>

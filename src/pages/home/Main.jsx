@@ -5,6 +5,11 @@ import HeroSection from './HeroSection'
 import TopicsGrid from './TopicsGrid'
 import WhyChooseUs from './WhyChooseUs'
 import InvestorSection from './InvestorSection'
+import MeetYourHost from './MeetYourHost'
+import Learn from './Learn'
+import Guide from './Guide'
+import Testimonials from './Testimonials'
+import NewsletterBanner from '@/common/NewsletterBanner'
 
 export default function Main() {
   return (
@@ -13,9 +18,13 @@ export default function Main() {
         <HeroSection />
         <InvestorSection/>
         <Podcast />
-        <TopicsGrid />
-        <WhyChooseUs />
-        <Podcast />
+        <MeetYourHost/>
+        <Learn />
+        <Guide/>
+        <Testimonials/>
+        <NewsletterBanner/>
+        {/* <TopicsGrid /> */}
+        {/* <WhyChooseUs /> */}
       </Layout>
     </>
   )

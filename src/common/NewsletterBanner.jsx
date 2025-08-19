@@ -30,55 +30,45 @@ const NewsletterBanner = () => {
   };
 
   return (
-    <section className="text-white py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-[1440px] mx-auto px-4 w-full">
-        <div className="bg-[#141414] p-4 rounded-[30px]">
-          <div className="relative rounded-[30px] overflow-hidden shadow-2xl">
-            {/* Background Image */}
-            <div className="absolute inset-0">
-              <Image
-                src={news}
-                alt="Blurred background of people discussing"
-                layout="fill"
-                objectFit="cover"
-                quality={75}
-                className="filter blur-md scale-105"
-                priority
-              />
-              <div className="absolute inset-0 bg-black opacity-60"></div>
-            </div>
-
-            {/* Content */}
-            <div className="relative z-10 p-3 sm:p-8 md:p-12 flex flex-col items-center text-center">
-              <h2 className="text-[30px] sm:text-[45px] md:text-[55px] font-[700] mb-4 leading-tight">
-                Want more exclusive content?
-              </h2>
-              <p className="text-[16px] sm:text-[18px] md:text-[20px] font-[400] max-w-2xl mx-auto mb-8">
-                Get exclusive property tips, expert strategies, and bonus content delivered to your inbox weekly.
-              </p>
-
-              {/* Email Input + Button */}
-              <div className="flex flex-col sm:flex-row items-center sm:justify-between w-full max-w-[404px] border border-[#FFFFFF33] rounded-[10px] px-[9px] sm:pl-[20px] py-[9px] gap-3">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  required
-                  name="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-transparent text-white placeholder-white border-none outline-none focus:ring-0"
-                />
-                <button
-                  onClick={handleSubmit}
-                  disabled={loading}
-                  className={`w-full sm:w-auto px-4 py-2 bg-black text-white text-[16px] font-medium rounded-[8px] transition duration-300 ${loading ? "opacity-50 cursor-not-allowed" : ""
-                    }`}
-                >
-                  {loading ? "Subscribing..." : "Subscribe"}
-                </button>
-              </div>
-            </div>
+    <section className="bg-[#1C1C1C] mx-auto container xl:max-w-[1440px] px-16 py-16">
+      <div className="mx-auto bg-[#2C2C2C] rounded-2xl border border-white overflow-hidden flex flex-col md:flex-row items-center md:items-stretch">
+        {/* Left Content */}
+        <div className="flex-1 p-8 md:p-12 flex flex-col justify-center">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-10">
+            We help you grow with latest updates.
+          </h2>
+          {/* Input Box */}
+          <div className="flex items-center mb-4 bg-transparent border border-gray-500 rounded-full overflow-hidden">
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              required
+              name="email"
+              onChange={(e) => setEmail(e.target.value)}
+              className="flex-1 px-4 py-2 bg-transparent text-white placeholder-gray-400 outline-none"
+            />
+            <button className={`px-6 py-2 bg-gray-600 hover:bg-purple-600 transition text-white font-medium 
+               ${loading ? "opacity-50 cursor-not-allowed" : ""}`
+              }
+              onClick={handleSubmit}
+              disabled={loading}>
+            {loading ? "Subscribing..." : "Subscribe"}
+            </button>
           </div>
+          <p className="text-gray-400 text-lg">
+            Get exclusive tips, episode updates, and investment insights straight
+            to your inbox — every week.
+          </p>
+        </div>
+        {/* Right Image */}
+        <div className="flex-1 relative h-[450px]">
+          <Image
+            src="/subscribe.png" 
+            alt="Subscribe"
+            fill
+            className="object-cover"
+          />
         </div>
       </div>
     </section>

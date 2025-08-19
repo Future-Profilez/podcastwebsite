@@ -10,7 +10,7 @@ function HeroSection() {
         <div className="max-w-xl text-center lg:text-left">
           <h1 className="text-7xl font-extrabold leading-tight">
             VOICE THAT{" "}
-            <span className="bg-[radial-gradient(50%_50%_at_50%_50%,#FC18D8_0%,#9747FF_100%)] bg-clip-text text-transparent block lg:inline">
+            <span className="text-theme block lg:inline">
               MATTERS
             </span>
           </h1>
