@@ -40,10 +40,7 @@ export default function Footer() {
       {/* Left - Logo & Tagline */}
       <div>
         <div className="flex items-center gap-3">
-          <Image src={Logo} alt="Podcast Logo" width={40} height={40} />
-          <span className="text-base font-bold leading-tight">
-            THE PROPERTY <br /> PORTFOLIO PODCAST
-          </span>
+          <Image src={"/logo.png"} alt="Podcast Logo" width={2110} height={520} className="h-16 w-auto object-cover"/>
         </div>
         <p className="mt-4 text-gray-400 text-sm">
           Invest with Confidence. Grow with Purpose.

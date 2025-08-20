@@ -3,7 +3,8 @@ import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { FaStar } from "react-icons/fa";
-import { IoChevronBack, IoChevronForward } from "react-icons/io5";
+import { FaArrowRight } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
 
 const testimonials = [
   {
@@ -70,8 +71,8 @@ export default function Testimonials() {
             1024: { slidesPerView: 3 },
           }}
         >
-          {testimonials.map((t) => (
-            <SwiperSlide key={t.id}>
+          {testimonials && testimonials?.map((t) => (
+            <SwiperSlide key={t?.id}>
               <div className="bg-[#4B4B4B] rounded-xl p-6 text-white shadow-lg h-full">
                 {/* Stars */}
                 <div className="flex gap-1 text-[#EB9F25] mb-4">
@@ -84,13 +85,13 @@ export default function Testimonials() {
 
                 {/* Review */}
                 <p className="text-gray-200 text-sm mb-4 leading-relaxed">
-                  “{t.review}”
+                  “{t?.review}”
                 </p>
 
                 {/* Author */}
                 <div>
-                  <span className="font-semibold">{t.name}</span>{" "}
-                  <span className="text-gray-400 text-sm">{t.role}</span>
+                  <span className="font-semibold">{t?.name}</span>{" "}
+                  <span className="text-gray-400 text-sm">{t?.role}</span>
                 </div>
               </div>
             </SwiperSlide>
@@ -98,11 +99,11 @@ export default function Testimonials() {
         </Swiper>
 
         {/* Custom Arrows */}
-        <button className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-10 min-w-[40px] h-[40px] flex items-center justify-center rounded-full bg-gray-700 text-white hover:bg-[linear-gradient(270deg,#9747FF_0%,#FC18D8_97.09%)] transition cursor-pointer">
-          <IoChevronBack size={20} />
+        <button className="swiper-button-prev-custom absolute left-[-35px] top-1/2 -translate-y-1/2 z-10 min-w-[50px] h-[50px] flex items-center justify-center rounded-full bg-[#ffffff78] text-[#1E1E1E] hover:text-white hover:bg-[linear-gradient(270deg,#9747FF_0%,#FC18D8_97.09%)] transition cursor-pointer">
+          <FaArrowLeft size={20} />
         </button>
-        <button className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-10 min-w-[40px] h-[40px] flex items-center justify-center rounded-full bg-gray-700 text-white hover:bg-[linear-gradient(270deg,#9747FF_0%,#FC18D8_97.09%)] transition cursor-pointer">
-          <IoChevronForward size={20} />
+        <button className="swiper-button-next-custom absolute right-[-35px] top-1/2 -translate-y-1/2 z-10 min-w-[50px] h-[50px] flex items-center justify-center rounded-full bg-[#ffffff78] text-[#1E1E1E] hover:text-white hover:bg-[linear-gradient(270deg,#9747FF_0%,#FC18D8_97.09%)] transition cursor-pointer">
+          <FaArrowRight size={20} />
         </button>
       </div>
     </section>

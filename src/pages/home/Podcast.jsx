@@ -3,56 +3,37 @@ import HeadingTopic from "@/common/HeadingTopic";
 import Listing from "../api/Listing";
 import NoData from "@/common/NoDataFound";
 import Card from "@/common/Card";
+import { IoMdTime } from "react-icons/io";
 import { FaHeadphones, FaUser, FaClock } from "react-icons/fa";
+import { FaPlay } from "react-icons/fa";
+import { useAudioPlayer } from "@/context/AudioPlayerContext";
+import Image from "next/image";
 
 export default function Podcast() {
-const episodes = [
-  {
-    id: 1,
-    title: "The Property Portfolio Podcast",
-    episode: 11,
-    author: "Nolan Bator",
-    duration: "15 mins",
-    description:
-      "Andy Budd, design leader, start-up advisor & coach, talks to Maze about the dimensions of product decision-making—the power dynamics...",
-    image:
-      "https://images.unsplash.com/photo-1610563166150-b34df4a7a2d5?q=80&w=1470&auto=format&fit=crop",
-  },
-  {
-    id: 2,
-    title: "The Property Portfolio Podcast",
-    episode: 11,
-    author: "Nolan Bator",
-    duration: "15 mins",
-    description:
-      "Andy Budd, design leader, start-up advisor & coach, talks to Maze about the dimensions of product decision-making—the power dynamics...",
-    image:
-      "https://images.unsplash.com/photo-1610563166150-b34df4a7a2d5?q=80&w=1470&auto=format&fit=crop",
-  },
-];
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [expanded, setExpanded] = useState(null);
+  const { playTrack } = useAudioPlayer();
 
-  const fetchPodcasts = async () => {
+  const fetchEpisodes = async () => {
     try {
       setLoading(true);
       const main = new Listing();
-      const response = await main.PodcastGet();
+      const response = await main.EpsodeGetAll();
       console.log("response", response?.data?.data)
       setData(response?.data?.data || []);
     } catch (error) {
       console.log("error", error);
-      console.log("Hellos");
-
       setData([]);
     }
     setLoading(false);
   };
 
   useEffect(() => {
-    fetchPodcasts();
+    fetchEpisodes();
   }, []);
+
+  console.log("data", data);
 
   return (
     <section className="bg-gradient-to-r from-black via-gray-900 to-black py-12">
@@ -69,25 +50,40 @@ const episodes = [
             <div
               key={index}
               className="flex flex-col md:flex-row items-start bg-[#4B4B48] rounded-xl shadow-md overflow-hidden p-4"
+              onClick={() => playTrack(ep)}
             >
               {/* Image */}
-              <img
+              {/* <img
                 src={ep?.thumbnail}
-                alt={ep?.name}
+                alt={ep?.title}
                 className="md:w-1/3 w-full h-64 object-cover"
-              />
+              /> */}
+              {/* Thumbnail */}
+              <div className="md:w-1/3 w-full h-64 relative rounded-lg overflow-hidden">
+                <Image
+                  src={ep?.thumbnail || ""}
+                  alt={ep?.title}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-lg"
+                />
+                {/* Hover Play Icon */}
+                <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  <FaPlay className="text-white text-lg sm:text-2xl" />
+                </div>
+              </div>
 
               {/* Content */}
               <div className="p-6 flex-1 font-opensans">
-                <h3 className="text-xl font-bold text-white capitalize">{ep?.name}</h3>
+                <h3 className="text-xl font-bold text-white capitalize">{ep?.title}</h3>
                 <div className="flex items-center text-sm text-white gap-4 mt-2">
                   <span>Episode : {ep?.episode?._count?.episodes}</span>
-                  <span className="flex items-center gap-1">
-                    <FaUser /> {ep?.author}
-                  </span>
                   {/* <span className="flex items-center gap-1">
-                    <FaClock /> {ep.duration}
+                    <FaUser /> {ep?.author}
                   </span> */}
+                  <span className="flex items-center gap-1">
+                    <IoMdTime size={20}/> {ep?.duration} mins
+                  </span>
                 </div>
 
                 <p className="text-gray-400 mt-4 text-sm leading-relaxed">

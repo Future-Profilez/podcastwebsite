@@ -47,6 +47,7 @@ export default function Index() {
         },
 
     ];
+    
     return (
         <Layout>
             <div className="bg-[#0a0a0a]  pt-[118px] lg:pt-[128px] pb-[20px] ">

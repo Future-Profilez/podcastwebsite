@@ -18,6 +18,10 @@ class Listing extends Component {
     return Api.get("/podcast/get")
   }
 
+  async EpsodeGetAll() {
+    return Api.get("/file/getAll")
+  }
+
   async AdminPodcastGet() {
     return Api.get("/admin/podcast/get")
   }

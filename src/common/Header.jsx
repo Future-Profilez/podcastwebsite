@@ -35,10 +35,10 @@ export default function Header() {
           <div className="flex items-center">
             <Link href="/">
               <Image
-                width={100}
-                height={100}
-                className="h-16 w-auto rounded-full"
-                src={Logo}
+                width={2110}
+                height={520}
+                className="h-16 w-auto object-cover"
+                src={"/logo.png"}
                 alt="Logo"
               />
             </Link>

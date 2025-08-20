@@ -13,7 +13,6 @@ import NewsletterBanner from '@/common/NewsletterBanner'
 
 export default function Main() {
   return (
-    <>
       <Layout>
         <HeroSection />
         <InvestorSection/>
@@ -26,6 +25,5 @@ export default function Main() {
         {/* <TopicsGrid /> */}
         {/* <WhyChooseUs /> */}
       </Layout>
-    </>
   )
 }
