@@ -10,7 +10,7 @@ import AudioPlyr from "@/components/AudioPlyrWrapper";
 
 export default function App({ Component, pageProps }) {
   return <>
-   <NextNProgress color="#CC2828" />
+    <NextNProgress color="#CC2828" />
     <Toaster
       toastOptions={{
         position: "top-right",
@@ -22,8 +22,8 @@ export default function App({ Component, pageProps }) {
     />
     <RoleProvider>
       <AudioPlayerProvider>
-     <Component {...pageProps} />
-     <AudioPlyr />
+        <Component {...pageProps} />
+        <AudioPlyr />
       </AudioPlayerProvider>
     </RoleProvider>
   </>;
