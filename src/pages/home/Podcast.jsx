@@ -9,7 +9,6 @@ import Image from "next/image";
 export default function Podcast() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [expanded, setExpanded] = useState(null);
   const { playTrack } = useAudioPlayer();
 
   const fetchEpisodes = async () => {
@@ -83,9 +82,9 @@ export default function Podcast() {
                           <path fill-rule="evenodd" clip-rule="evenodd" d="M5.8 4.3335V8.3335C5.8 8.6224 5.8569 8.90848 5.96747 9.1754C6.07803 9.44232 6.24008 9.68484 6.44437 9.88913C6.64865 10.0934 6.89118 10.2555 7.1581 10.366C7.42501 10.4766 7.71109 10.5335 8 10.5335C8.28891 10.5335 8.57499 10.4766 8.8419 10.366C9.10882 10.2555 9.35135 10.0934 9.55563 9.88913C9.75992 9.68484 9.92197 9.44232 10.0325 9.1754C10.1431 8.90848 10.2 8.6224 10.2 8.3335V4.3335C10.2 3.75002 9.96821 3.19044 9.55563 2.77786C9.14305 2.36528 8.58348 2.1335 8 2.1335C7.41652 2.1335 6.85695 2.36528 6.44437 2.77786C6.03179 3.19044 5.8 3.75002 5.8 4.3335ZM8.4 13.3175V15.3335H7.6V13.3175C6.34718 13.2169 5.17819 12.6483 4.32576 11.7247C3.47333 10.8011 2.99999 9.59034 3 8.3335V7.3335H3.8V8.3335C3.8 9.44741 4.2425 10.5157 5.03015 11.3033C5.8178 12.091 6.88609 12.5335 8 12.5335C9.11391 12.5335 10.1822 12.091 10.9698 11.3033C11.7575 10.5157 12.2 9.44741 12.2 8.3335V7.3335H13V8.3335C13 9.59034 12.5267 10.8011 11.6742 11.7247C10.8218 12.6483 9.65282 13.2169 8.4 13.3175ZM5 4.3335C5 3.53785 5.31607 2.77478 5.87868 2.21218C6.44129 1.64957 7.20435 1.3335 8 1.3335C8.79565 1.3335 9.55871 1.64957 10.1213 2.21218C10.6839 2.77478 11 3.53785 11 4.3335V8.3335C11 9.12915 10.6839 9.89221 10.1213 10.4548C9.55871 11.0174 8.79565 11.3335 8 11.3335C7.20435 11.3335 6.44129 11.0174 5.87868 10.4548C5.31607 9.89221 5 9.12915 5 8.3335V4.3335Z" fill="white" stroke="white" stroke-width="0.5" />
                         </svg>
                         <span className="font-[400] text-[16px]">
-                        {ep?.author || "Nolan Bator"}
+                          {ep?.author || "Nolan Bator"}
                         </span>
-                      </span> | 
+                      </span> |
                     </span>
                     <span className="flex items-center gap-1 font-[400] text-[16px]">
                       <span className=" px-2 py-1">
@@ -95,16 +94,12 @@ export default function Podcast() {
                     </span>
                   </div>
                   <p className="font-[400] text-[18px] text-[#FFFFFFB2] mt-1 md:text-[20px] leading-relaxed line-clamp-2">
-                    {expanded !== ep?.id &&
-                       ep?.description }
+
+                    {ep?.description}
                   </p>
                   {/* See more */}
                   <button
                     className="flex items-center gap-1 font-[400] text-[18px] text-[#FFFFFFB2]  mt-2"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setExpanded(expanded === ep?.id ? null : ep?.id);
-                    }}
                   >
                     See More <IoIosArrowDown />
                   </button>
