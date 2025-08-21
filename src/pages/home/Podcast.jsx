@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import HeadingTopic from "@/common/HeadingTopic";
 import Listing from "../api/Listing";
-import NoData from "@/common/NoDataFound";
-import Card from "@/common/Card";
 import { IoMdTime } from "react-icons/io";
 import { FaHeadphones, FaUser, FaClock } from "react-icons/fa";
 import { FaPlay } from "react-icons/fa";

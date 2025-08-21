@@ -1,15 +1,15 @@
-import AudioPlayer, { RHAP_UI } from "react-h5-audio-player";
-import "react-h5-audio-player/lib/styles.css";
 import { useAudioPlayer } from "@/context/AudioPlayerContext";
 import { useRef } from "react";
-import { FaBackward, FaForward } from "react-icons/fa";
 import { GoScreenFull } from "react-icons/go";
 import { BsFullscreenExit } from "react-icons/bs";
 import Image from "next/image";
 
 export default function AudioPlyr() {
+  const AudioPlayer = require("react-h5-audio-player").default;
+  const { RHAP_UI } = require("react-h5-audio-player");
+  require("react-h5-audio-player/lib/styles.css");
+
   const {
-    isPlaying,
     pauseTrack,
     playTrack,
     currentTrack,
@@ -59,23 +59,16 @@ export default function AudioPlyr() {
         showJumpControls={false}
         onPlay={() => playTrack(selectedEpisode)}
         onPause={pauseTrack}
-        // customAdditionalControls={[
-        //   <button className="custom-skip-btn" onClick={backward} key="backward">
-        //     <FaBackward />
-        //   </button>,
-        //   <button className="custom-skip-btn" onClick={forward} key="forward">
-        //     <FaForward />
-        //   </button>,
-        // ]}
-         customVolumeControls={[
+        customVolumeControls={[
           RHAP_UI.VOLUME,
-          <button className="pl-5 cursor-pointer" title="Enter Full Screen" onClick={() => setIsMinimized(!isMinimized)}>
-            {isMinimized ? 
-              <GoScreenFull size={20}/>
-            :
-            <BsFullscreenExit size={20} />
-          }
-          </button> 
+          <button
+            key="fullscreen"
+            className="pl-5 cursor-pointer"
+            title="Enter Full Screen"
+            onClick={() => setIsMinimized(!isMinimized)}
+          >
+            {isMinimized ? <GoScreenFull size={20} /> : <BsFullscreenExit size={20} />}
+          </button>,
         ]}
       />
     </div>
