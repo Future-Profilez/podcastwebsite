@@ -112,7 +112,7 @@ export default function EpisodeCard({ episode, setIsEpisodePopupOpen, setSelecte
             See More <IoIosArrowDown />
           </button>
           {/* Listen Button */}
-          <button className="mt-6 cursor-pointer flex items-center gap-2 bg-[#5B5B5B] text-white px-8 py-3 rounded-full transition-all hover:scale-105 hover:bg-gradient-to-r hover:from-[#9747FF] hover:to-[#FC18D8]">
+          <button className="mt-6 cursor-pointer flex items-center gap-2 bg-[#5B5B5B] text-white px-8 py-3 rounded-full transition-all hover:scale-105 hover:bg-[linear-gradient(270deg,#9747FF_0%,#FC18D8_97.09%)]">
             <FaHeadphones /> Listen Now
           </button>
         </div>

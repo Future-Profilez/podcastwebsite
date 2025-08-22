@@ -8,6 +8,7 @@ import FAQSection from './FAQSection';
 import NewsletterBanner from '@/common/NewsletterBanner';
 import toast from 'react-hot-toast';
 import Listing from '../api/Listing';
+import GetInTouch from './GetInTouch';
 const Index = () => {
 
     const [formData, setFormData] = useState({
@@ -83,9 +84,10 @@ const Index = () => {
     return (
         <Layout>
 
-            <div className=" pt-[118px] lg:pt-[128px] ">
+            <div className="">
                 <div className="mx-auto container xl:max-w-[1440px] px-4">
-                    <section className="bg-[#141414] border border-[#FFFFFF33] rounded-[10px] p-[20px] md:p-[40px]">
+                    <GetInTouch/>
+                    {/* <section className="bg-[#141414] border border-[#FFFFFF33] rounded-[10px] p-[20px] md:p-[40px]">
 
                         <Heading
                             title="Get in Touch"
@@ -93,7 +95,6 @@ const Index = () => {
                         />
 
                         <div className="flex gap-8 flex-wrap sm:flex-nowrap">
-                            {/* Send A Message - 2/3 */}
                             <div className="w-full md:w-2/3 bg-[#1F1F1F] p-4 md:p-6 rounded-lg">
                                 <h2 className="text-white text-[20px] sm:text-[35px] md:text-[45px] font-bold  mb-2 md:mb-4 leading-tight">
                                     Send A Message
@@ -154,29 +155,24 @@ const Index = () => {
                                 </form>
                             </div>
 
-                            {/* Contact Info - 1/3 */}
                             <div className="w-full md:w-1/3 space-y-8">
-                                {/* Location */}
                                 <div className="bg-[#1F1F1F] p-3 md:p-6 rounded-lg border border-[#FFFFFF33]">
                                     <h3 className="text-[#FFFFFF66]  text-[15px] md:text-[18px] mb-2 md:mb-4">Location</h3>
                                     <p className="text-white  font-medium text-[15px] md:text-[18px]">Sydney & Melbourne, Australia</p>
                                 </div>
 
-                                {/* Work Hours */}
                                 <div className="bg-[#1F1F1F] p-3 md:p-6 rounded-lg border border-[#FFFFFF33]">
                                     <h3 className="text-[#FFFFFF66] font-outfit text-[15px] md:text-[18px] mb-2 md:mb-4">Work Hours</h3>
                                     <p className="text-white  font-medium text-[15px] md:text-[18px]">Monday-Friday: 9AM - 7PM</p>
                                     <p className="text-white font-medium text-[15px] md:text-[18px]">Sunday: 10AM - 7PM</p>
                                 </div>
 
-                                {/* Support */}
                                 <div className="bg-[#1F1F1F] p-3 md:p-6 rounded-lg border border-[#FFFFFF33]">
                                     <h3 className="text-[#FFFFFF66] font-outfit text-[15px] md:text-[18px] mb-2 md:mb-4">Support</h3>
                                     <p className="text-white  font-medium text-[15px] md:text-[18px]">hello@property.com</p>
                                     <p className="text-white  font-medium text-[15px] md:text-[18px]">6232 1151 2211</p>
                                 </div>
 
-                                {/* Social */}
                                 <div className="flex justify-between items-center gap-4 flex-wrap">
                                     <div className="flex items-center gap-3">
                                         <p className="text-[#FFFFFF66] text-[18px] font-[400] m-0 font-outfit">Follow Us</p>
@@ -195,7 +191,7 @@ const Index = () => {
                                 </div>
                             </div>
                         </div>
-                    </section>
+                    </section> */}
                 </div>
                 <div className="mx-auto container xl:max-w-[1440px] px-4 mt-4">
                     <section className=" rounded-[10px] p-[20px] md:p-[40px]">

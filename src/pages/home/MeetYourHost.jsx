@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { FaUserFriends } from "react-icons/fa";
 import { PiMedalFill } from "react-icons/pi";
@@ -50,25 +48,21 @@ export default function MeetYourHost() {
           </p>
 
           {/* Bottom badges */}
-          <div className="flex flex-wrap justify-center lg:justify-start gap-6">
+          <div className="flex flex-wrap justify-center items-center lg:justify-start gap-6">
             {/* Property Expert */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 text-base md:text-lg font-semibold">
               <div className="bg-[linear-gradient(180deg,rgba(252,24,216,0.7)_0%,rgba(151,71,255,0.7)_100%)] p-2 rounded-full flex items-center justify-center w-12 h-12">
                 <PiMedal className="text-white" size={26} />
               </div>
-              <span className="text-base md:text-lg font-semibold">
                 Property Expert
-              </span>
             </div>
 
             {/* Community Builder */}
             <div className="flex items-center gap-3">
-              <div className="bg-[linear-gradient(180deg,rgba(252,24,216,0.7)_0%,rgba(151,71,255,0.7)_100%)] p-2 rounded-full flex items-center justify-center w-12 h-12">
+              <div className="bg-[linear-gradient(180deg,rgba(252,24,216,0.7)_0%,rgba(151,71,255,0.7)_100%)] p-2 rounded-full flex items-center justify-center w-12 h-12 text-base md:text-lg font-semibold">
                 <MdOutlinePeopleAlt className="text-white" size={26} />
               </div>
-              <span className="text-base md:text-lg font-semibold">
                 Community Builder
-              </span>
             </div>
           </div>
         </div>
