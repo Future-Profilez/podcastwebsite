@@ -8,7 +8,7 @@ import { MdSupportAgent } from "react-icons/md";
 import { BsFileEarmarkPdf } from "react-icons/bs";
 import { usePathname } from "next/navigation";
 
-export default function Sidebar({ toggle }) {
+export default function Sidebar({ toggle, handleLogout }) {
   const pathname = usePathname();
   return (
     <>
@@ -78,7 +78,7 @@ export default function Sidebar({ toggle }) {
           </li>
 
           <li>
-            <button className="hover:opacity-[0.7] hover:text-white focus:!text-white text-gray-200 w-full mb-2 py-[13px] px-[13px] border border-gray-700 rounded-2xl bg-dark flex items-center">
+            <button className="hover:opacity-[0.7] hover:text-white focus:!text-white text-gray-200 w-full mb-2 py-[13px] px-[13px] border border-gray-700 rounded-2xl bg-dark flex items-center" onClick={handleLogout}>
               <MdOutlineLogout className="me-2" size={"1.4rem"} /> Logout
             </button>
           </li>

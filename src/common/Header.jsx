@@ -31,17 +31,15 @@ export default function Header() {
       <div className="mx-auto container sm:container md:container lg:container xl:max-w-[1440px] px-4">
         <div className="relative flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center">
             <Link href="/">
               <Image
                 width={2110}
                 height={520}
-                className="h-16 w-auto object-cover"
+                className="h-12 md:h-16 w-auto object-cover"
                 src={"/logo.png"}
                 alt="Logo"
               />
             </Link>
-          </div>
 
           {/* Desktop Links */}
           <nav className="hidden lg:flex gap-x-10">

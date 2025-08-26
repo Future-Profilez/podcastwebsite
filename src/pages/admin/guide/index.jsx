@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AuthLayout from "@/layout/AuthLayout";
 import AddGuide from "./AddGuide";
 import Listing from "@/pages/api/Listing";
+import GuideCard from "@/common/GuideCard";
 
 export default function index() {
   const [loading, setLoading] = useState(false);
@@ -40,7 +41,11 @@ export default function index() {
          Add New Guide
         </button>
       </div>
-      <div>index</div>
+
+      {data &&
+        data?.map((guide, index) => (
+          <GuideCard guide={guide} key={index}/>
+      ))}
       <AddGuide
         isOpen={isGuidePopupOpen}
         onClose={() => {

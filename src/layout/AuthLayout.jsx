@@ -34,6 +34,13 @@ export default function AuthLayout({ children }) {
     }
   };
 
+  const handleLogout = () => {
+    localStorage && localStorage.removeItem("token");
+    router.push("/admin/login");
+    toast.success("Logout Successfully");
+    setUser(null);
+  };
+
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
@@ -58,8 +65,8 @@ export default function AuthLayout({ children }) {
           <header className="fixed top-0 left-0 w-full z-[51] bg-black shadow-lg border-b border-gray-800 px-6 md:px-7 py-2 xl:py-4 flex items-center justify-between">
               <Link href="/">
                 <img
-                  className="max-w-[170px]"
-                  src="https://images.carriercms.com/image/upload/carrier/residential-hvac/adkit/Logos/Carrier/Full_color_wWhite_tagline_thumb.png"
+                  className="max-w-[170px] h-auto"
+                  src="/logo.png"
                 />
               </Link>
             <div className="flex gap-2 items-center">
@@ -74,7 +81,7 @@ export default function AuthLayout({ children }) {
                   </p>
                 </div>
               </div>
-              <button className="hidden md:flex">
+              <button className="hidden md:flex" onClick={handleLogout}>
                 <TbLogout color="#fff" className="me-2" size={"2rem"} />
               </button>
 
@@ -89,7 +96,7 @@ export default function AuthLayout({ children }) {
             </div>
           </header>
           <div className="flex w-screen overflow-hidden">
-            <Sidebar toggle={toggle} />
+            <Sidebar toggle={toggle} handleLogout={handleLogout}/>
             <div className="content md:max-h-[100vh] overflow-y-auto lg:w-[calc(100%-300px)] p-6 md:p-8 !pt-[120px]   lg:!pt-[150px] w-full">
               {children}
             </div>
