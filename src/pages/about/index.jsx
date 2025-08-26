@@ -162,7 +162,7 @@ const Index = () => {
             </h2>
 
             <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
-              {featuredInLogos.map((logo, index) => (
+              {featuredInLogos?.map((logo, index) => (
                 <div
                   key={index}
                   className="bg-[#4B4B4B] rounded-full px-3 py-2 md:px-5 md:py-4 text-white text-[18px] md:text-[20px] whitespace-nowrap"
