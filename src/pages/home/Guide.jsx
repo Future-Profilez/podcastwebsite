@@ -1,9 +1,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
-
 export default function Guide() {
-
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const fetchEpisodes = async () => {

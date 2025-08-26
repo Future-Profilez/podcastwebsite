@@ -3,7 +3,7 @@ import moment from "moment";
 import ViewMessage from "@/common/ViewMessage";
 import Listing from "@/pages/api/Listing";
 import NoData from "@/common/NoDataFound";
-import LoadingSpinner, { TableLoader } from "@/common/LoadingSpinner";
+import  { TableLoader } from "@/common/LoadingSpinner";
 import AuthLayout from "@/layout/AuthLayout";
 
 export default function index() {
