@@ -37,8 +37,19 @@ export default function Testimonials() {
     },
   ];
   return (
+<<<<<<< HEAD
     <section className="relative mx-auto container xl:max-w-[1440px] py-16 px-9 overflow-hidden">
+=======
+    <section className="relative z-0 ">
+       {/* Background Circles */}
+        <div className="absolute w-[200px] h-[200px] top-15 left-5 blurcircle rounded-r-full"></div>
+    <div className="absolute w-[200px] h-[200px] top-15 right-5 blurcircle rounded-l-full"></div>
+
+      <div className="mx-auto container xl:max-w-[1440px] py-16 px-4 z-10 relative" >
+>>>>>>> 6e2d140980e1c6c07be31feaaf64eae4b9aaa86f
       {/* Heading */}
+        {/* Background Circles */}
+      
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold text-white">
           WHAT <span className="text-theme">OUR LISTENER</span> SAY?
@@ -99,6 +110,7 @@ export default function Testimonials() {
         <button className="swiper-button-next-custom absolute right-[-35px] top-1/2 -translate-y-1/2 z-10 min-w-[50px] h-[50px] flex items-center justify-center rounded-full bg-[#ffffff78] text-[#1E1E1E] hover:text-white hover:bg-[linear-gradient(270deg,#9747FF_0%,#FC18D8_97.09%)] transition cursor-pointer">
           <FaArrowRight size={20} />
         </button>
+      </div>
       </div>
     </section>
   );

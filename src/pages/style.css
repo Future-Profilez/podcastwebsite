@@ -108,3 +108,9 @@ body{
       rgba(90, 63, 205, 0.3) 0%,
       rgba(226, 32, 210, 0.3) 100%);
 }
+
+.blurcircle {
+    filter: blur(110px); 
+    opacity: 1;
+    background: linear-gradient(115deg, #9747FF, #FC18D8)
+}
