@@ -25,10 +25,10 @@ export default function Mission() {
     },
   ];
   return (
-    <div className="relative overflow-x-hidden">
+    <div className="relative overflow-hidden">
       {/* Background Circles - Full Section */}
-      <div className="absolute w-[40vw] max-w-[500px] aspect-square -left-[12%] -top-[20%] blurcircle rounded-r-full" />
-      <div className="absolute w-[40vw] max-w-[500px] aspect-square -right-[12%] -bottom-[20%] blurcircle rounded-l-full" />
+      <div className="absolute w-[20vw] max-w-[500px] aspect-square -left-[5%] -top-[20%] blurcircle rounded-r-full" />
+      <div className="absolute w-[20vw] max-w-[500px] aspect-square -right-[5%] -bottom-[20%] blurcircle rounded-l-full" />
       <div className="container xl:max-w-[1440px] mx-auto px-4 ">
         <section className="py-[20px] md:py-[40px] mb-3">
           <div className="bg-[#141414] border-1  border-[#FFFFFF33] rounded-[10px] p-[20px] md:p-[40px] relative z-[2]">
