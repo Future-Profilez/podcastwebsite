@@ -37,12 +37,12 @@ export default function Testimonials() {
     },
   ];
   return (
-    <section className="relative ">
+    <section className="relative z-0 ">
        {/* Background Circles */}
-        <div className="absolute w-[300px] h-[300px] top-15 left-0 blurcircle rounded-r-full"></div>
-    <div className="absolute w-[300px] h-[300px] top-15 right-0 blurcircle rounded-l-full"></div>
+        <div className="absolute w-[200px] h-[200px] top-15 left-5 blurcircle rounded-r-full"></div>
+    <div className="absolute w-[200px] h-[200px] top-15 right-5 blurcircle rounded-l-full"></div>
 
-      <div className="mx-auto container xl:max-w-[1440px] py-16 px-4">
+      <div className="mx-auto container xl:max-w-[1440px] py-16 px-4 z-10 relative" >
       {/* Heading */}
         {/* Background Circles */}
       
