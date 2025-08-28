@@ -10,7 +10,7 @@ export default function Free() {
       <Heading
         title={"Free Property "}
         subtitle={"Investing Guides"}
-        className={"text-left max-w-6xl"}
+        className={"text-center sm:text-left max-w-6xl"}
         content={
           "Download high-value, expert-approved resources to deepen your property knowledge and take action with confidence. All guides are completely free and packed with actionable insights."
         }

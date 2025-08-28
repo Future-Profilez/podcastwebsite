@@ -25,12 +25,12 @@ export default function Podcast() {
 
 
   return (
-    <section className="relative py-12">
+    <section className="relative my-12 overflow-hidden">
+      {/* Left Blur Semi-circle */}
+      <div className="absolute w-[60vw] max-w-[500px] aspect-square -left-[12%] bottom-0 blurcircle rounded-r-full" />
 
-      {/* Background Circles */}
-      <div className="absolute w-[300px] h-[300px] bottom-0 left-0 blurcircle rounded-r-full"></div>
-
-      <div className="absolute w-[300px] h-[300px] top-0 right-0 blurcircle rounded-l-full"></div>
+      {/* Right Blur Semi-circle */}
+      <div className="absolute w-[60vw] max-w-[500px] aspect-square -right-[12%] top-0 blurcircle rounded-l-full" />
 
       <div className="mx-auto container xl:max-w-[1440px] px-4 relative">
         {/* Heading */}

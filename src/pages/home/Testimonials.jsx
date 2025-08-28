@@ -37,80 +37,77 @@ export default function Testimonials() {
     },
   ];
   return (
-<<<<<<< HEAD
-    <section className="relative mx-auto container xl:max-w-[1440px] py-16 px-9 overflow-hidden">
-=======
-    <section className="relative z-0 ">
-       {/* Background Circles */}
-        <div className="absolute w-[200px] h-[200px] top-15 left-5 blurcircle rounded-r-full"></div>
-    <div className="absolute w-[200px] h-[200px] top-15 right-5 blurcircle rounded-l-full"></div>
-
-      <div className="mx-auto container xl:max-w-[1440px] py-16 px-4 z-10 relative" >
->>>>>>> 6e2d140980e1c6c07be31feaaf64eae4b9aaa86f
-      {/* Heading */}
+    <section className="relative w-full h-[500px] flex items-center justify-center overflow-hidden z-0 ">
+      {/* Left Blur Semi-circle */}
+      <div className="absolute w-[40vw] max-w-[350px] aspect-square -left-[12%] top-1/2 -translate-y-1/2 blurcircle rounded-r-full"/>
+      {/* Right Blur Semi-circle */}
+      <div className="absolute w-[40vw] max-w-[350px] aspect-square -right-[12%] top-1/2 -translate-y-1/2 blurcircle rounded-l-full"/>
+      <div className="mx-auto container xl:max-w-[1440px] py-16 px-4 z-10 relative">
+        {/* Heading */}
         {/* Background Circles */}
-      
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-white">
-          WHAT <span className="text-theme">OUR LISTENER</span> SAY?
-        </h2>
-      </div>
 
-      {/* Swiper Slider */}
-      <div className="relative">
-        <Swiper
-          modules={[Navigation, Autoplay]} // 👈 add Autoplay here
-          navigation={{
-            nextEl: ".swiper-button-next-custom",
-            prevEl: ".swiper-button-prev-custom",
-          }}
-          spaceBetween={24}
-          slidesPerView={1}
-          loop={true} // 👈 makes it loop infinitely
-          autoplay={{
-            delay: 3000, // 👈 auto slide every 3s
-            disableOnInteraction: false, // 👈 keeps autoplay after user interaction
-          }}
-          breakpoints={{
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-          }}
-        >
-          {testimonials && testimonials?.map((t) => (
-            <SwiperSlide key={t?.id}>
-              <div className="bg-[#4B4B4B] rounded-xl p-6 text-white shadow-lg h-full">
-                {/* Stars */}
-                <div className="flex gap-1 text-[#EB9F25] mb-4">
-                  {Array(5)
-                    .fill()
-                    .map((_, i) => (
-                      <FaStar key={i} />
-                    ))}
-                </div>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
+            WHAT <span className="text-theme">OUR LISTENER</span> SAY?
+          </h2>
+        </div>
 
-                {/* Review */}
-                <p className="text-gray-200 text-sm mb-4 leading-relaxed">
-                  “{t?.review}”
-                </p>
+        {/* Swiper Slider */}
+        <div className="relative">
+          <Swiper
+            modules={[Navigation, Autoplay]} // 👈 add Autoplay here
+            navigation={{
+              nextEl: ".swiper-button-next-custom",
+              prevEl: ".swiper-button-prev-custom",
+            }}
+            spaceBetween={24}
+            slidesPerView={1}
+            loop={true} // 👈 makes it loop infinitely
+            autoplay={{
+              delay: 3000, // 👈 auto slide every 3s
+              disableOnInteraction: false, // 👈 keeps autoplay after user interaction
+            }}
+            breakpoints={{
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
+          >
+            {testimonials &&
+              testimonials?.map((t) => (
+                <SwiperSlide key={t?.id}>
+                  <div className="bg-[#4B4B4B] rounded-xl p-6 text-white shadow-lg h-full">
+                    {/* Stars */}
+                    <div className="flex gap-1 text-[#EB9F25] mb-4">
+                      {Array(5)
+                        .fill()
+                        .map((_, i) => (
+                          <FaStar key={i} />
+                        ))}
+                    </div>
 
-                {/* Author */}
-                <div>
-                  <span className="font-semibold">{t?.name}</span>{" "}
-                  <span className="text-gray-400 text-sm">{t?.role}</span>
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+                    {/* Review */}
+                    <p className="text-gray-200 text-sm mb-4 leading-relaxed">
+                      “{t?.review}”
+                    </p>
 
-        {/* Custom Arrows */}
-        <button className="swiper-button-prev-custom absolute left-[-35px] top-1/2 -translate-y-1/2 z-10 min-w-[50px] h-[50px] flex items-center justify-center rounded-full bg-[#ffffff78] text-[#1E1E1E] hover:text-white hover:bg-[linear-gradient(270deg,#9747FF_0%,#FC18D8_97.09%)] transition cursor-pointer">
-          <FaArrowLeft size={20} />
-        </button>
-        <button className="swiper-button-next-custom absolute right-[-35px] top-1/2 -translate-y-1/2 z-10 min-w-[50px] h-[50px] flex items-center justify-center rounded-full bg-[#ffffff78] text-[#1E1E1E] hover:text-white hover:bg-[linear-gradient(270deg,#9747FF_0%,#FC18D8_97.09%)] transition cursor-pointer">
-          <FaArrowRight size={20} />
-        </button>
-      </div>
+                    {/* Author */}
+                    <div>
+                      <span className="font-semibold">{t?.name}</span>{" "}
+                      <span className="text-gray-400 text-sm">{t?.role}</span>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+          </Swiper>
+
+          {/* Custom Arrows */}
+          <button className="swiper-button-prev-custom absolute left-[-35px] top-1/2 -translate-y-1/2 z-10 min-w-[50px] h-[50px] flex items-center justify-center rounded-full bg-[#ffffff78] text-[#1E1E1E] hover:text-white hover:bg-[linear-gradient(270deg,#9747FF_0%,#FC18D8_97.09%)] transition cursor-pointer">
+            <FaArrowLeft size={20} />
+          </button>
+          <button className="swiper-button-next-custom absolute right-[-35px] top-1/2 -translate-y-1/2 z-10 min-w-[50px] h-[50px] flex items-center justify-center rounded-full bg-[#ffffff78] text-[#1E1E1E] hover:text-white hover:bg-[linear-gradient(270deg,#9747FF_0%,#FC18D8_97.09%)] transition cursor-pointer">
+            <FaArrowRight size={20} />
+          </button>
+        </div>
       </div>
     </section>
   );

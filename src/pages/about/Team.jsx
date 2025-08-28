@@ -43,10 +43,12 @@ export default function Team() {
           hosts?.map((host, index) => (
             <div
               key={index}
-              className="bg-[#141414] rounded-lg p-2 md:p-8 flex flex-col items-center text-center border-1  border-[#FFFFFF33]"
+              className="relative bg-[#141414] rounded-lg p-2 md:p-8 flex flex-col items-center text-center border-1 border-[#FFFFFF33] overflow-hidden"
             >
+              {/* Background purple colour div */}
+              <div className="absolute w-full sm:w-[20vw] max-w-[500px] aspect-square top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 blurcircle rounded-full z-[1]"/>
               {/* Host Image */}
-              <div className="relative w-32 h-32 mb-6">
+              <div className="relative w-32 h-32 mb-6 z-[2]">
                 <Image
                   src={host?.image}
                   alt={host?.name}
@@ -57,20 +59,20 @@ export default function Team() {
               </div>
 
               {/* Host Name and Title */}
-              <h3 className="text-[18px] md:text-[22px] font-bold mb-2  text-center">
+              <h3 className="text-[18px] md:text-[22px] font-bold mb-2  text-center z-[2]">
                 {host?.name}
               </h3>
-              <p className="text-[#FFFFFF]  text-[15px] md:text-[18px] mb-6   font-[400]">
+              <p className="text-[#FFFFFF]  text-[15px] md:text-[18px] mb-6 font-[400] z-[2]">
                 {host?.title}
               </p>
 
               {/* Description */}
-              <p className="text-[16px] md:text-[20px]  text-white text-center  mb-8  leading-relaxed font-[400] ">
+              <p className="text-[16px] md:text-[20px] text-white text-center mb-8 leading-relaxed font-[400] z-[2]">
                 {host?.description}
               </p>
 
               {/* Badges */}
-              <div className="flex flex-col sm:flex-row items-center justify-between w-full md:gap-4 px-3 py-1 md:px-5 md:py-3 border border-[#FFFFFF33] rounded-lg text-base md:text-lg">
+              <div className="flex flex-col sm:flex-row items-center justify-between w-full md:gap-4 px-3 py-1 md:px-5 md:py-3 bg-black border border-[#FFFFFF33] rounded-lg text-base md:text-lg z-[2]">
                 <div className="flex items-center gap-3 font-semibold">
                   <div className="bg-[linear-gradient(180deg,rgba(252,24,216,0.7)_0%,rgba(151,71,255,0.7)_100%)] rounded-full flex items-center justify-center w-12 h-12">
                     <PiMedal className="text-white" size={26} />

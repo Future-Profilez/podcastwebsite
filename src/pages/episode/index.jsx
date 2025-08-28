@@ -9,6 +9,7 @@ import { useAudioPlayer } from "@/context/AudioPlayerContext";
 import { IoIosArrowDown, IoMdTime } from "react-icons/io";
 import Image from "next/image";
 import EpisodeCard from "@/common/EpisodeCard";
+import Testimonials from "../home/Testimonials";
 
 export default function Index() {
   const [data, setData] = useState([]);
@@ -35,7 +36,7 @@ export default function Index() {
   return (
     <Layout>
       <div className="bg-[#0a0a0a]  pt-[118px] lg:pt-[128px] pb-[20px] ">
-        <div className="max-w-[1440px] mx-auto px-4 w-full">
+        <div className="max-w-[1440px] mx-auto px-4 w-full mb-10">
           {/* Heading Section */}
           <Heading
             className={"text-center max-w-3xl mx-auto"}
@@ -45,6 +46,12 @@ export default function Index() {
               "Explore our library of powerful episodes covering everything from equity leverage and financing to market predictions and tax strategies."
             }
           />
+          <div className="relative overflow-hidden">
+            {/* Background color divs */}
+
+            <div className="absolute w-[60vw] max-w-[500px] aspect-square -left-[12%] bottom-1/2 blurcircle rounded-r-full" />
+            <div className="absolute w-[60vw] max-w-[500px] aspect-square -right-[12%] top-0 blurcircle rounded-l-full" />
+            <div className="absolute w-[60vw] max-w-[500px] aspect-square -right-[12%] top-2/3 blurcircle rounded-l-full" />
           {/* Search + Filter */}
           <div className="flex flex-col md:flex-row justify-center items-center gap-[10px] mb-8">
             {/* Search Box */}
@@ -88,8 +95,10 @@ export default function Index() {
                 />
               ))}
           </div>
+          </div>
         </div>
-        <NewsletterBanner />
+        {/* <NewsletterBanner /> */}
+        <Testimonials/>
       </div>
     </Layout>
   );

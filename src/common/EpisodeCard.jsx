@@ -87,7 +87,7 @@ export default function EpisodeCard({
 
     {/* Meta Info */}
     <div className="flex flex-wrap items-center text-xs sm:text-sm md:text-base text-white gap-2 sm:gap-4 mb-3">
-      <span className="px-2">Episode: {episode?.episode?._count?.episodes || 11}</span> |
+      <span className="">Episode: {episode?.episode?._count?.episodes || 11}</span> |
       <span className="flex items-center gap-1">
          <svg
           width="16"
