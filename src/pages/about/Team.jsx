@@ -72,9 +72,9 @@ export default function Team() {
               </p>
 
               {/* Badges */}
-              <div className="flex flex-col sm:flex-row items-center justify-between w-full md:gap-4 px-3 py-1 md:px-5 md:py-3 bg-black border border-[#FFFFFF33] rounded-lg text-base md:text-lg z-[2]">
+              <div className="flex flex-col sm:flex-row items-center justify-between w-full md:gap-4 px-3 py-1 md:px-5 md:py-3 bg-black border border-[#FFFFFF33] rounded-lg text-sm md:text-lg z-[2]">
                 <div className="flex items-center gap-3 font-semibold">
-                  <div className="bg-[linear-gradient(180deg,rgba(252,24,216,0.7)_0%,rgba(151,71,255,0.7)_100%)] rounded-full flex items-center justify-center w-12 h-12">
+                  <div className="bg-[linear-gradient(180deg,rgba(252,24,216,0.7)_0%,rgba(151,71,255,0.7)_100%)] rounded-full flex items-center justify-center min-w-12 w-12 min-h-12 h-12">
                     <PiMedal className="text-white" size={26} />
                   </div>
                   Property Expert

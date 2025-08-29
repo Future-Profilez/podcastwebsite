@@ -13,7 +13,14 @@ export default function Main() {
     <Layout>
       <HeroSection />
       <InvestorSection />
+      <section className="relative my-12 overflow-hidden">
+      {/* Left Blur Semi-circle */}
+      <div className="absolute w-[60vw] max-w-[500px] aspect-square -left-[12%] bottom-0 translate-y-1/2 blurcircle rounded-r-full" />
+
+      {/* Right Blur Semi-circle */}
+      <div className="absolute w-[60vw] max-w-[500px] aspect-square -right-[12%] top-0 blurcircle rounded-l-full" />
       <Podcast />
+      </section>
       <MeetYourHost />
       <Learn />
       <Guide />

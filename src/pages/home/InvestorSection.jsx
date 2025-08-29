@@ -1,10 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import { MdOutlineHeadphones } from "react-icons/md";
 
 export default function InvestorSection() {
   return (
-    <section className="bg-[#1C1B1B] py-20">
-      <div className="mx-auto container xl:max-w-[1440px] px-4 flex flex-col lg:flex-row items-center justify-between gap-12">
+    <section className="bg-[#1C1B1B] py-8 sm:py-20">
+      <div className="mx-auto container xl:max-w-[1440px] px-4 flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-12">
         {/* Left Content */}
         <div className="text-white max-w-xl text-center lg:text-left">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
@@ -37,9 +38,10 @@ export default function InvestorSection() {
             </p>
           </div>
 
-          <button className="mt-8 px-6 py-3 rounded-md font-semibold bg-theme hover:opacity-90 transition mx-auto lg:mx-0">
+          <Link
+              href={"/about"} className="mt-8 px-6 py-3 inline-block rounded-md font-semibold bg-theme hover:opacity-90 transition mx-auto lg:mx-0">
             Learn More
-          </button>
+          </Link>
         </div>
 
         {/* Right Image */}

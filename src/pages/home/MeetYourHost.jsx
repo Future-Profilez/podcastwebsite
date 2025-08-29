@@ -3,7 +3,7 @@ import { MdOutlinePeopleAlt } from "react-icons/md";
 import { PiMedal } from "react-icons/pi";
 export default function MeetYourHost() {
   return (
-    <section className="bg-black text-white py-10">
+    <section className="bg-black text-white pb-5 sm:pb-10 sm:pt-10">
       <div className="mx-auto container xl:max-w-[1440px] px-4 flex flex-col lg:flex-row items-center gap-10">
         {/* Left Side - Host Image */}
         <div className="flex justify-center w-full lg:w-1/2">
@@ -54,8 +54,8 @@ export default function MeetYourHost() {
             </div>
 
             {/* Community Builder */}
-            <div className="flex items-center gap-3">
-              <div className="bg-[linear-gradient(180deg,rgba(252,24,216,0.7)_0%,rgba(151,71,255,0.7)_100%)] p-2 rounded-full flex items-center justify-center w-12 h-12 text-base md:text-lg font-semibold">
+            <div className="flex items-center gap-3 text-base md:text-lg font-semibold">
+              <div className="bg-[linear-gradient(180deg,rgba(252,24,216,0.7)_0%,rgba(151,71,255,0.7)_100%)] p-2 rounded-full flex items-center justify-center w-12 h-12">
                 <MdOutlinePeopleAlt className="text-white" size={26} />
               </div>
               Community Builder

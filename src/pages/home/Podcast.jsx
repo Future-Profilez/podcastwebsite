@@ -25,13 +25,6 @@ export default function Podcast() {
 
 
   return (
-    <section className="relative my-12 overflow-hidden">
-      {/* Left Blur Semi-circle */}
-      <div className="absolute w-[60vw] max-w-[500px] aspect-square -left-[12%] bottom-0 blurcircle rounded-r-full" />
-
-      {/* Right Blur Semi-circle */}
-      <div className="absolute w-[60vw] max-w-[500px] aspect-square -right-[12%] top-0 blurcircle rounded-l-full" />
-
       <div className="mx-auto container xl:max-w-[1440px] px-4 relative">
         {/* Heading */}
         <div className="relative z-[2]">
@@ -45,6 +38,7 @@ export default function Podcast() {
           {loading ? (
             <Loader />
           ) : (
+            <>
             <div className="space-y-8">
               {data &&
                 data?.map((ep, index) => (
@@ -58,10 +52,8 @@ export default function Podcast() {
                   />
                 ))}
             </div>
-          )}
-
-          {/* View All Button */}
-          <div className="text-center mt-10">
+            {/* View All Button */}
+          <div className="text-center mt-8 mb-4">
             <Link
               href={"/episode"}
               className="px-6 py-3 cursor-pointer rounded-md font-semibold bg-theme hover:opacity-90 transition"
@@ -69,9 +61,9 @@ export default function Podcast() {
               View All
             </Link>
           </div>
+          </>
+          )}
         </div>
       </div>
-
-    </section>
   );
 }

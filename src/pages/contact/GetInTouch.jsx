@@ -1,6 +1,12 @@
 import Heading from "@/common/Heading";
 import React from "react";
-import { FaPhoneAlt, FaEnvelope, FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
+import {
+  FaPhoneAlt,
+  FaEnvelope,
+  FaFacebookF,
+  FaInstagram,
+  FaYoutube,
+} from "react-icons/fa";
 import { FaLocationDot, FaXTwitter } from "react-icons/fa6";
 import { SiSpotify } from "react-icons/si";
 
@@ -18,13 +24,12 @@ export default function GetInTouch() {
           </p>
         </div>
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 text-white mt-12 px-4">
-
           {/* Left Side */}
           <div className="flex flex-col justify-center space-y-8">
             <div className="space-y-8">
               {/* Phone */}
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 flex items-center justify-center rounded-full border border-white/40">
+                <div className="min-w-12 w-12 min-h-12 h-12 flex items-center justify-center rounded-full border border-white/40">
                   <FaPhoneAlt size={18} />
                 </div>
                 <div>
@@ -35,7 +40,7 @@ export default function GetInTouch() {
 
               {/* Location */}
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 flex items-center justify-center rounded-full border border-white/40">
+                <div className="min-w-12 w-12 min-h-12 h-12 flex items-center justify-center rounded-full border border-white/40">
                   <FaLocationDot size={20} />
                 </div>
                 <div>
@@ -46,7 +51,7 @@ export default function GetInTouch() {
 
               {/* Email */}
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 flex items-center justify-center rounded-full border border-white/40">
+                <div className="min-w-12 w-12 min-h-12 h-12 flex items-center justify-center rounded-full border border-white/40">
                   <FaEnvelope size={18} />
                 </div>
                 <div>
@@ -59,34 +64,34 @@ export default function GetInTouch() {
               <div>
                 <h4 className="font-bold text-xl mb-2">Social Network</h4>
                 <p className="text-gray-300 mb-3">Follow us on</p>
-                <div className="flex gap-4">
+                <div className="grid grid-cols-3 sm:flex sm:flex-wrap gap-2 sm:gap-4">
                   <a
                     href="#"
-                    className="w-10 h-10 flex items-center justify-center rounded-full border border-white/40 hover:bg-white/10"
+                    className="min-w-10 w-10 min-h-10 h-10 flex items-center justify-center rounded-full border border-white/40 hover:bg-white/10"
                   >
                     <SiSpotify size={18} />
                   </a>
                   <a
                     href="#"
-                    className="w-10 h-10 flex items-center justify-center rounded-full border border-white/40 hover:bg-white/10"
+                    className="min-w-10 w-10 min-h-10 h-10 flex items-center justify-center rounded-full border border-white/40 hover:bg-white/10"
                   >
                     <FaXTwitter size={18} />
                   </a>
                   <a
                     href="#"
-                    className="w-10 h-10 flex items-center justify-center rounded-full border border-white/40 hover:bg-white/10"
+                    className="min-w-10 w-10 min-h-10 h-10 flex items-center justify-center rounded-full border border-white/40 hover:bg-white/10"
                   >
                     <FaFacebookF size={18} />
                   </a>
                   <a
                     href="#"
-                    className="w-10 h-10 flex items-center justify-center rounded-full border border-white/40 hover:bg-white/10"
+                    className="min-w-10 w-10 min-h-10 h-10 flex items-center justify-center rounded-full border border-white/40 hover:bg-white/10"
                   >
                     <FaInstagram size={18} />
                   </a>
                   <a
                     href="#"
-                    className="w-10 h-10 flex items-center justify-center rounded-full border border-white/40 hover:bg-white/10"
+                    className="min-w-10 w-10 min-h-10 h-10 flex items-center justify-center rounded-full border border-white/40 hover:bg-white/10"
                   >
                     <FaYoutube size={18} />
                   </a>
@@ -97,11 +102,12 @@ export default function GetInTouch() {
 
           {/* Right Side - Contact Form */}
           <div className="bg-black/60 rounded-2xl shadow-lg p-6 md:p-10">
-
             <h3 className="text-2xl font-semibold mb-8">Send Us a Message</h3>
             <form className="space-y-5">
               <div>
-                <label className="block text-lg font-semibold mb-2">Full Name</label>
+                <label className="block text-lg font-semibold mb-2">
+                  Full Name
+                </label>
                 <input
                   type="text"
                   placeholder="Your full name"
@@ -109,7 +115,9 @@ export default function GetInTouch() {
                 />
               </div>
               <div>
-                <label className="block text-lg font-semibold mb-2">Email</label>
+                <label className="block text-lg font-semibold mb-2">
+                  Email
+                </label>
                 <input
                   type="email"
                   placeholder="yourwinzy@gmail.com"
@@ -117,7 +125,9 @@ export default function GetInTouch() {
                 />
               </div>
               <div>
-                <label className="block text-lg font-semibold mb-2">Subject</label>
+                <label className="block text-lg font-semibold mb-2">
+                  Subject
+                </label>
                 <input
                   type="text"
                   placeholder="Your subject"
@@ -125,7 +135,9 @@ export default function GetInTouch() {
                 />
               </div>
               <div>
-                <label className="block text-lg font-semibold mb-2">Messsage</label>
+                <label className="block text-lg font-semibold mb-2">
+                  Messsage
+                </label>
                 <textarea
                   placeholder="Your message"
                   rows="4"
@@ -134,7 +146,7 @@ export default function GetInTouch() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-[#4B4B4B] hover:bg-[linear-gradient(270deg,#9747FF_0%,#FC18D8_97.09%)] transition-all text-white py-3 rounded-full font-semibold cursor-pointer"
+                className="w-full bg-[#4B4B4B] hover:bg-gradient-to-r hover:from-[#9747FF] hover:to-[#FC18D8] transition-all text-white py-3 rounded-full font-semibold cursor-pointer"
               >
                 Send Message
               </button>

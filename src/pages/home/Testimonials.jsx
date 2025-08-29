@@ -37,18 +37,18 @@ export default function Testimonials() {
     },
   ];
   return (
-    <section className="relative w-full h-[500px] flex items-center justify-center overflow-hidden z-0 ">
+    <section className="relative w-full flex items-center justify-center overflow-hidden z-0 ">
       {/* Left Blur Semi-circle */}
       <div className="absolute w-[40vw] max-w-[350px] aspect-square -left-[12%] top-1/2 -translate-y-1/2 blurcircle rounded-r-full"/>
       {/* Right Blur Semi-circle */}
       <div className="absolute w-[40vw] max-w-[350px] aspect-square -right-[12%] top-1/2 -translate-y-1/2 blurcircle rounded-l-full"/>
-      <div className="mx-auto container xl:max-w-[1440px] py-16 px-4 z-10 relative">
+      <div className="mx-auto container xl:max-w-[1440px] py-8 sm:py-16 px-8 z-10 relative">
         {/* Heading */}
         {/* Background Circles */}
 
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white">
-            WHAT <span className="text-theme">OUR LISTENER</span> SAY?
+            WHAT <span className="text-theme">OUR LISTENERS</span> SAY?
           </h2>
         </div>
 
@@ -101,10 +101,10 @@ export default function Testimonials() {
           </Swiper>
 
           {/* Custom Arrows */}
-          <button className="swiper-button-prev-custom absolute left-[-35px] top-1/2 -translate-y-1/2 z-10 min-w-[50px] h-[50px] flex items-center justify-center rounded-full bg-[#ffffff78] text-[#1E1E1E] hover:text-white hover:bg-[linear-gradient(270deg,#9747FF_0%,#FC18D8_97.09%)] transition cursor-pointer">
+          <button className="swiper-button-prev-custom absolute left-[-35px] top-1/2 -translate-y-1/2 z-10 min-w-[50px] h-[50px] flex items-center justify-center rounded-full bg-[#ffffff78] text-[#1E1E1E] hover:text-white hover:bg-gradient-to-r hover:from-[#9747FF] hover:to-[#FC18D8] transition cursor-pointer">
             <FaArrowLeft size={20} />
           </button>
-          <button className="swiper-button-next-custom absolute right-[-35px] top-1/2 -translate-y-1/2 z-10 min-w-[50px] h-[50px] flex items-center justify-center rounded-full bg-[#ffffff78] text-[#1E1E1E] hover:text-white hover:bg-[linear-gradient(270deg,#9747FF_0%,#FC18D8_97.09%)] transition cursor-pointer">
+          <button className="swiper-button-next-custom absolute right-[-35px] top-1/2 -translate-y-1/2 z-10 min-w-[50px] h-[50px] flex items-center justify-center rounded-full bg-[#ffffff78] text-[#1E1E1E] hover:text-white hover:bg-gradient-to-r hover:from-[#9747FF] hover:to-[#FC18D8] transition cursor-pointer">
             <FaArrowRight size={20} />
           </button>
         </div>

@@ -5,7 +5,7 @@ export default function GuideCard({guide}) {
   return (
     <div
       key={guide?.id}
-      className="relative rounded-2xl p-[2px] bg-transparent transition"
+      className="relative rounded-2xl p-[2px] bg-transparent transition sm:min-h-[250px]"
     >
       <div className="bg-[#2C2C2C] rounded-2xl p-6 flex flex-col lg:flex-row gap-6 h-full">
         {/* Left Image */}
@@ -29,14 +29,17 @@ export default function GuideCard({guide}) {
             </p>
           </div>
 
+          <div>
           <div className="flex items-center justify-between text-xs text-gray-400 mb-3">
             <span>{guide?.pages} pages</span>
             <span>{guide?.downloads} downloads</span>
           </div>
 
-          <button className="w-full cursor-pointer bg-gray-700 text-white py-2 rounded-lg font-medium hover:bg-[linear-gradient(270deg,#9747FF_0%,#FC18D8_97.09%)] transition">
+          <button className="w-full cursor-pointer bg-gray-700 text-white py-2 rounded-lg font-medium hover:bg-gradient-to-r hover:from-[#9747FF] hover:to-[#FC18D8] transition">
             Download PDF
           </button>
+          </div>
+
         </div>
       </div>
     </div>

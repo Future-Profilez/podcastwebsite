@@ -3,7 +3,7 @@ import React from "react";
 const Loader = () => {
   return (
     <>
-      <div className="loader-wrapper">
+      <div className="loader-wrapper my-20">
         <ul className="wave-menu">
           <li />
           <li />
@@ -58,11 +58,11 @@ const Loader = () => {
         }
 
         .wave-menu:hover > li {
-          background: #fff;
+          background: linear-gradient(115deg, #9747FF, #FC18D8);
         }
 
         .wave-menu:hover {
-          background: #545FE5;
+          background: #ffff;
         }
 
         .wave-menu li:nth-child(2) {

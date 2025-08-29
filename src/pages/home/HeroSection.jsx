@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { MdOutlineHeadphones } from "react-icons/md";
+import Link from "next/link";
 
 function HeroSection() {
   return (
@@ -16,10 +17,11 @@ function HeroSection() {
             Stories That Resonate. Real investment insights from property
             experts who've been there, done that, and want to share the lessons.
           </p>
-          <button className="mt-6 flex items-center gap-2 px-6 py-3 rounded-full font-semibold bg-theme mx-auto lg:mx-0">
+           <Link
+              href={"/episode"} className="mt-6 flex items-center gap-2 px-6 py-3 rounded-full font-semibold bg-theme mx-auto lg:mx-0 cursor-pointer w-fit">
             <MdOutlineHeadphones size={20} />
             Listen Now
-          </button>
+          </Link>
         </div>
         {/* Right Image */}
         <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg">

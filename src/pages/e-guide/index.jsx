@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Free from "./free";
 import GuideCard from "@/common/GuideCard";
 import Listing from "../api/Listing";
+import Loader from "@/common/Loader";
 
 const Index = () => {
   const [data, setData] = useState([]);
@@ -32,7 +33,7 @@ const Index = () => {
           {/* Main Heading and Description */}
         </div>
       </div>
-      <div className="relative w-full mb-[80px] lg:mb-[120px] overflow-hidden">
+      <div className="relative w-full pb-[40px] lg:pb-[0px] lg:mb-[120px] overflow-hidden">
          {/* Background Circles - Full Section */}
          <div className="absolute w-[60vw] max-w-[500px] aspect-square -left-[12%] top-0 blurcircle rounded-r-full" />
          <div className="absolute w-[60vw] max-w-[500px] aspect-square -right-[12%] top-1/2 blurcircle rounded-l-full" />
@@ -46,6 +47,10 @@ const Index = () => {
               </span>
             </h2>
           </div>
+          {loading ? (
+            <Loader />
+          ) : (
+          <>
           <div className="grid gap-8 md:grid-cols-2 relative z-10">
             {data?.map((guide, index) => (
               <GuideCard guide={guide} key={index} />
@@ -56,6 +61,7 @@ const Index = () => {
               View All
             </button>
           </div>
+          </>)}
         </div>
       </div>
     </Layout>

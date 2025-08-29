@@ -10,6 +10,7 @@ import { IoIosArrowDown, IoMdTime } from "react-icons/io";
 import Image from "next/image";
 import EpisodeCard from "@/common/EpisodeCard";
 import Testimonials from "../home/Testimonials";
+import Loader from "@/common/Loader";
 
 export default function Index() {
   const [data, setData] = useState([]);
@@ -43,14 +44,14 @@ export default function Index() {
           <div className="absolute w-[60vw] max-w-[500px] aspect-square -right-[12%] top-0 blurcircle rounded-l-full" />
           <div className="absolute w-[60vw] max-w-[500px] aspect-square -right-[12%] top-2/3 blurcircle rounded-l-full" />
 
-          <div className="max-w-[1440px] mx-auto px-4 w-full mb-10">
+          <div className="max-w-[1440px] mx-auto px-4 w-full mb-10 relative z-[2]">
             {/* Heading Section */}
             <Heading
               className={"text-center max-w-3xl mx-auto"}
               subtitle={"All Episodes"}
               title={"Browse"}
               content={
-                "Explore our library of powerful episodes covering everything from equity leverage and financing to market predictions and tax strategies."
+                "Browse our full archive of episodes covering market shifts, portfolio growth, and future outlooks."
               }
             />
             {/* Search + Filter */}
@@ -82,20 +83,23 @@ export default function Index() {
               </select>
             </div>
 
-            {/* Episodes Grid */}
-            <div className="space-y-8">
-              {data &&
-                data?.map((ep, index) => (
-                  <EpisodeCard
-                    episode={ep}
-                    key={index}
-                    setIsEpisodePopupOpen={false}
-                    setSelectedEpisode={null}
-                    fetchDetails={fetchEpisodes}
-                    isAdmin={false}
-                  />
-                ))}
-            </div>
+            {loading ? (
+              <Loader />
+            ) : (
+              <div className="space-y-8">
+                {data &&
+                  data?.map((ep, index) => (
+                    <EpisodeCard
+                      episode={ep}
+                      key={index}
+                      setIsEpisodePopupOpen={false}
+                      setSelectedEpisode={null}
+                      fetchDetails={fetchEpisodes}
+                      isAdmin={false}
+                    />
+                  ))}
+              </div>
+            )}
           </div>
         </div>
         {/* <NewsletterBanner /> */}

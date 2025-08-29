@@ -113,7 +113,8 @@ export default function EpisodeCard({
     </div>
 
     {/* Description */}
-    <p className="text-sm sm:text-base md:text-lg text-white/70 line-clamp-2">
+    <p
+      className={`text-sm sm:text-base md:text-lg text-white/70 transition-all duration-300 ${isOpen ? "" : "line-clamp-2"}`}>
       {episode?.description}
     </p>
 
@@ -123,7 +124,7 @@ export default function EpisodeCard({
     </button>
 
     {/* Listen Button */}
-    <button className="mt-4 sm:mt-6 flex items-center gap-2 bg-[#5B5B5B] text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full transition-all hover:scale-105 hover:bg-[linear-gradient(270deg,#9747FF_0%,#FC18D8_97.09%)]">
+    <button className="mt-4 sm:mt-6 flex items-center gap-2 bg-[#5B5B5B] text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full transition-all hover:scale-105 hover:bg-gradient-to-r hover:from-[#9747FF] hover:to-[#FC18D8] cursor-pointer">
       <FaHeadphones /> Listen Now
     </button>
   </div>

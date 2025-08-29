@@ -30,7 +30,7 @@ const NewsletterBanner = () => {
   };
 
   return (
-    <section className=" container xl:max-w-[1440px] mx-auto px-4 mt-6 mb-6">
+    <section className=" container xl:max-w-[1440px] mx-auto px-4 sm:mt-6 mb-6">
       <div className="bg-[#2C2C2C] rounded-2xl border border-[rgba(255, 255, 255, 1)] overflow-hidden flex flex-col lg:flex-row items-center lg:items-stretch">
         {/* Left Content */}
         <div className="w-full lg:w-1/2 p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
@@ -49,7 +49,7 @@ const NewsletterBanner = () => {
               className="flex-1 px-4 py-3 bg-transparent text-white placeholder-gray-400 outline-none"
             />
             <button
-              className={`hidden sm:block mt-2 sm:mt-0 sm:ml-2 px-6 py-3 bg-gray-600 hover:bg-[linear-gradient(270deg,#9747FF_0%,#FC18D8_97.09%)] transition text-white font-medium rounded-full ${loading ? "opacity-50 cursor-not-allowed" : ""
+              className={`hidden sm:block mt-2 sm:mt-0 sm:ml-2 px-6 py-3 bg-gray-600 hover:bg-gradient-to-r hover:from-[#9747FF] hover:to-[#FC18D8] transition text-white font-medium rounded-full ${loading ? "opacity-50 cursor-not-allowed" : " cursor-pointer"
                 }`}
               onClick={handleSubmit}
               disabled={loading}
@@ -58,7 +58,7 @@ const NewsletterBanner = () => {
             </button>
           </div>
           <button
-            className={`block sm:hidden mt-2 sm:mt-0 mb-3 sm:ml-2 px-6 py-3 bg-gray-600 hover:bg-[linear-gradient(270deg,#9747FF_0%,#FC18D8_97.09%)] transition text-white font-medium rounded-full ${loading ? "opacity-50 cursor-not-allowed" : ""
+            className={`block sm:hidden mt-2 sm:mt-0 mb-3 sm:ml-2 px-6 py-3 bg-gray-600 hover:bg-gradient-to-r hover:from-[#9747FF] hover:to-[#FC18D8] transition text-white font-medium rounded-full ${loading ? "opacity-50 cursor-not-allowed" : " cursor-pointer"
               }`}
             onClick={handleSubmit}
             disabled={loading}
