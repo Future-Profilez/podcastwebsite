@@ -6,24 +6,42 @@ import Listing from "../api/Listing";
 import Loader from "@/common/Loader";
 
 const Index = () => {
-  const [data, setData] = useState([]);
+  const [guides, setGuides] = useState([]);
   const [loading, setLoading] = useState(false);
-  const fecthGuides = async () => {
-    try {
-      setLoading(true);
-      const main = new Listing();
-      const response = await main.GuideList();
-      setData(response?.data?.data || []);
-    } catch (error) {
-      console.log("error", error);
-      setData([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const fetchGuides = async (currentPage = 1) => {
+  try {
+    setLoading(true);
+    const main = new Listing();
+    const response = await main.GuideList(currentPage);
+
+    if (response?.data?.data) {
+      const { guides = [], totalPages = 1 } = response.data.data;
+      setGuides((prev) =>
+        currentPage === 1 ? guides : [...prev, ...guides]
+      );
+
+      setTotalPages(totalPages);
     }
-    setLoading(false);
-  };
+  } catch (error) {
+    console.log("error", error);
+    setGuides([]);
+  }
+  setLoading(false);
+};
 
   useEffect(() => {
-    fecthGuides();
+    fetchGuides(1);
   }, []);
+
+  const handleViewMore = () => {
+    const nextPage = page + 1;
+    setPage(nextPage);
+    fetchGuides(nextPage);
+  };
+  // console.log("guides", guides);
 
   return (
     <Layout>
@@ -52,15 +70,16 @@ const Index = () => {
           ) : (
           <>
           <div className="grid gap-8 md:grid-cols-2 relative z-10">
-            {data?.map((guide, index) => (
+            {guides && guides?.map((guide, index) => (
               <GuideCard guide={guide} key={index} />
             ))}
           </div>
+          {page < totalPages && (
           <div className="flex justify-center mt-12 relative z-10">
-            <button className="px-8 py-3 rounded-full font-medium text-white bg-theme hover:opacity-90 transition">
-              View All
+            <button className="px-8 py-3 rounded-full font-medium text-white bg-theme hover:opacity-90 transition cursor-pointer">
+              {loading ? "Loading..." : "View More"}
             </button>
-          </div>
+          </div>)}
           </>)}
         </div>
       </div>

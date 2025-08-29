@@ -13,7 +13,7 @@ export default function Guide() {
     try {
       setLoading(true);
       const main = new Listing();
-      const response = await main.GuideList();
+      const response = await main.HomeGuideGet();
       setData(response?.data?.data || []);
     } catch (error) {
       console.log("error", error);

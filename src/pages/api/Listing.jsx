@@ -18,16 +18,20 @@ class Listing extends Component {
     return Api.get("/podcast/get")
   }
 
-  async EpisodeGetAll() {
-    return Api.get("/file/getAll")
+  async EpisodeGetAll(search="") {
+    return Api.get(`/file/getAll?search=${search}`)
   }
 
   async HomeEpisode() {
     return Api.get("/home/file/getAll")
   }
 
-  async GuideList() {
-    return Api.get("/guide/getAll")
+  async GuideList(page=1) {
+    return Api.get(`/guide/getAll?page=${page}`)
+  }
+
+  async HomeGuideGet() {
+    return Api.get("/home/guide/getAll")
   }
 
   async AdminPodcastGet() {

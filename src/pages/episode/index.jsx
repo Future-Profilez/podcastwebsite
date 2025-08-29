@@ -1,13 +1,8 @@
 import Layout from "@/layout/Layout";
-import React, { useEffect, useState } from "react";
-import { FaHeadphones, FaPlay, FaSearch } from "react-icons/fa";
-import NewsletterBanner from "@/common/NewsletterBanner";
+import React, { useEffect, useRef, useState } from "react";
+import { FaSearch } from "react-icons/fa";
 import Heading from "@/common/Heading";
-import Podcast from "../home/Podcast";
 import Listing from "../api/Listing";
-import { useAudioPlayer } from "@/context/AudioPlayerContext";
-import { IoIosArrowDown, IoMdTime } from "react-icons/io";
-import Image from "next/image";
 import EpisodeCard from "@/common/EpisodeCard";
 import Testimonials from "../home/Testimonials";
 import Loader from "@/common/Loader";
@@ -15,14 +10,14 @@ import Loader from "@/common/Loader";
 export default function Index() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { playTrack } = useAudioPlayer();
+  const [searchText, setSearchText] = useState("");
+  const timerRef = useRef(null);
 
-  const fetchEpisodes = async () => {
+  const fetchEpisodes = async (search = "") => {
     try {
       setLoading(true);
       const main = new Listing();
-      const response = await main.EpisodeGetAll();
-      console.log("response", response?.data?.data);
+      const response = await main.EpisodeGetAll(search);
       setData(response?.data?.data || []);
     } catch (error) {
       console.log("error", error);
@@ -34,6 +29,24 @@ export default function Index() {
   useEffect(() => {
     fetchEpisodes();
   }, []);
+
+   const handleSearchChange = (e) => {
+    const sval = e.target.value;
+    setSearchText(sval);
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    if (!sval || sval.trim() === "") {
+      timerRef.current = setTimeout(() => {
+        fetchEpisodes(sval);
+      }, 1500);
+    } else if (sval.length >= 2) {
+      timerRef.current = setTimeout(() => {
+        fetchEpisodes(sval);
+      }, 1500);
+    }
+  };
+
   return (
     <Layout>
       <div className="bg-[#0a0a0a]  pt-[118px] lg:pt-[128px] pb-[20px] ">
@@ -60,6 +73,8 @@ export default function Index() {
               <div className="relative w-full md:w-2/3">
                 <input
                   type="text"
+                  value={searchText}
+                  onChange={handleSearchChange}
                   placeholder="Search episodes..."
                   aria-label="Search episodes"
                   className="w-full rounded-[40px] bg-[#111111] text-white pt-[10px] pr-[30px] pl-[30px] pb-[10px]
