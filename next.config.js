@@ -8,6 +8,11 @@ const nextConfig = {
         hostname: 'podcast-website-bucket.s3.eu-north-1.amazonaws.com',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 's3.us-west-004.backblazeb2.com',
+        pathname: '**',
+      },
     ],
   },
   webpack: (config) => {
