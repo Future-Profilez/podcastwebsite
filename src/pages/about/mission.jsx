@@ -25,7 +25,7 @@ export default function Mission() {
   ];
   return (
     <section className="py-[20px] md:py-[40px] mb-3">
-      <div className="bg-[#141414] border-1  border-[#FFFFFF33] rounded-[10px] p-[10px] md:p-[20px] relative z-[2]">
+      <div className="bg-[#141414] sm:min-h-[380px]  border-1  border-[#FFFFFF33] rounded-[10px] p-[10px] md:p-[20px] relative z-[2]">
         <div className="absolute w-full sm:w-[15vw] max-w-[500px] aspect-square top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 blurcircle rounded-full z-[1]"/>
         <div className="text-center flex flex-col items-center relative z-[2]">
           <h2 className="text-[30px] sm:text-[41px] lg:text-[52px] font-[700] mb-2 uppercase">
