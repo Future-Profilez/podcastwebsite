@@ -35,7 +35,7 @@ const NewsletterBanner = () => {
         {/* Left Content */}
         <div className="w-full lg:w-1/2 p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
           <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-white mb-6 sm:mb-10">
-            We help you grow with latest updates.
+            Get Property Insights In Your Inbox
           </h2>
           {/* Input Box */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center mb-4 bg-transparent border rounded-full overflow-hidden">

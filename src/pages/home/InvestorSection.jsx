@@ -9,7 +9,7 @@ export default function InvestorSection() {
         {/* Left Content */}
         <div className="text-white max-w-xl text-center lg:text-left">
           <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight uppercase">
-            Conversation That <span className="text-theme">Shapes Your Next Move</span>.
+            Conversation That <span className="text-theme">Shapes Your Next Move</span>
           </h2>
           <p className="mt-6 text-gray-300 text-base sm:text-lg">
             Property isn’t just about bricks and numbers. It’s about the choices that shape how you live, grow, and plan for the future.

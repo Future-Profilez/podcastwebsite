@@ -118,7 +118,7 @@ export default function Index() {
           </div>
         </div>
         {/* <NewsletterBanner /> */}
-        <Testimonials />
+        {/* <Testimonials /> */}
       </div>
     </Layout>
   );
