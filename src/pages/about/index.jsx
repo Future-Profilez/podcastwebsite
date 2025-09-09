@@ -7,15 +7,8 @@ import {
   HiOutlineBriefcase,
   HiOutlineChartBar,
 } from "react-icons/hi";
-import { MdOutlineHeadphones } from "react-icons/md";
-import Image from "next/image";
-import arrow from "../../assets/arrow.png";
-import InvestorSection from "../home/InvestorSection";
-import MeetYourHost from "../home/MeetYourHost";
-import Team from "./Team";
-import Testimonials from "../home/Testimonials";
+import MeetYourHost from "./MeetYourHost";
 import Mission from "./mission";
-import Featured from "./Featured";
 import NewVoice from "./NewVoice";
 import Vision from "./Vision";
 import Approach from "./Approach";
@@ -80,27 +73,22 @@ const Index = () => {
   return (
     <Layout>
       <div className="text-white pt-[118px] lg:pt-[128px]">
-        <NewVoice/>
-        {/* <InvestorSection /> */}
+        <NewVoice />
         <div className="mt-10">
-        <MeetYourHost />
+          <MeetYourHost />
         </div>
       </div>
       <div className="relative overflow-hidden mt-10">
         <div className="absolute w-[20vw] max-w-[500px] aspect-square -left-[5%] top-1/3 blurcircle rounded-r-full" />
         <div className="absolute w-[20vw] max-w-[500px] aspect-square -right-[5%] bottom-1/10 blurcircle rounded-l-full" />
         <div className="container xl:max-w-[1440px] mx-auto px-4 ">
-          {/* <Team /> */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <Vision />
-          <Mission />
+            <Vision />
+            <Mission />
           </div>
-          <Approach/>
-          {/* <Featured /> */}
+          <Approach />
         </div>
       </div>
-      {/* <Testimonials /> */}
-      {/* <NewsletterBanner /> */}
     </Layout>
   );
 };
