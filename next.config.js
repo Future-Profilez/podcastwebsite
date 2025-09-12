@@ -13,6 +13,11 @@ const nextConfig = {
         hostname: 's3.us-west-004.backblazeb2.com',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'podcasts-episodes.s3.us-west-004.backblazeb2.com',
+        pathname: '**',
+      },
     ],
   },
   webpack: (config) => {

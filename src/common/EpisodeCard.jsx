@@ -10,6 +10,7 @@ import { useAudioPlayer } from "@/context/AudioPlayerContext";
 import { FaHeadphones, FaUser, FaClock } from "react-icons/fa";
 import { IoIosArrowDown, IoMdTime } from "react-icons/io";
 import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 
 export default function EpisodeCard({
   episode,
@@ -19,6 +20,7 @@ export default function EpisodeCard({
   isAdmin = false,
   slug,
 }) {
+  const router = useRouter();
   const { playTrack } = useAudioPlayer();
   const [isOpen, setIsOpen] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
@@ -60,7 +62,13 @@ export default function EpisodeCard({
     <div
   className={`group relative flex flex-col md:flex-row items-center gap-4 sm:gap-6 bg-[#4B4B4B] rounded-2xl shadow-lg overflow-hidden p-4 sm:p-6 md:p-8
     ${episode?.isDeleted ? "opacity-50" : ""} transition-colors duration-200 cursor-pointer`}
-  onClick={() => playTrack(episode)}
+  onClick={() => {
+    if(isAdmin){
+      playTrack(episode);
+      return;
+    }
+    router.push(`/episode/${episode?.uuid}`);
+    }}
 >
   {/* Image */}
   <div className="relative w-full md:w-[400px] aspect-video rounded-2xl overflow-hidden flex-shrink-0">

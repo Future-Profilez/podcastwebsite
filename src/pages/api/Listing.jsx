@@ -26,6 +26,10 @@ class Listing extends Component {
     return Api.get("/home/file/getAll")
   }
 
+  async EpisodeByID(data) {
+    return Api.get(`/file/get/${data}`)
+  }
+
   async GuideList(page=1) {
     return Api.get(`/guide/getAll?page=${page}`)
   }
