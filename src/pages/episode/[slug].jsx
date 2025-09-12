@@ -65,7 +65,7 @@ export default function Index() {
             />
 
             {/* Listen Now Button */}
-            <div className="flex flex-wrap gap-4 sm:mt-0 mt-6">
+            <div className="flex flex-wrap gap-4 sm:mt-0 mt-6 justify-center">
               <button className="flex items-center gap-2 border border-orange-300 text-orange-500 hover:bg-orange-50 px-4 py-2 rounded-md transition cursor-pointer">
                 <FaItunesNote />
                 Subscribe On iTunes
