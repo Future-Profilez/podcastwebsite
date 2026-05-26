@@ -13,6 +13,13 @@ export default function Index() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
 
+  const formatAvgDuration = (value) => {
+    if (value === null || value === undefined) return "N/A";
+    const num = Number(value);
+    if (!Number.isFinite(num)) return "N/A";
+    return `${num % 1 === 0 ? num : num.toFixed(1)} mins`;
+  };
+
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -45,7 +52,7 @@ export default function Index() {
       },
       {
         label: "Average Episode Duration",
-        value: data?.averageDuration || "N/A",
+        value: formatAvgDuration(data?.averageDuration),
         icon: <MdRequestQuote className="w-6 h-6 text-white" />,
       },
       {
